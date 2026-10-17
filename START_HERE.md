@@ -2,7 +2,13 @@
 
 Repository: https://github.com/glinting-yodeler/small-model-alignment-pa2
 
-Use `submission/PA2_Submission.zip` and `submission/PA2_report_final.pdf` after the final verification commands complete. The preserved v1 evidence is under `submission/evidence/`; additive persona v2, environment, and analysis evidence is under `submission/evidence_v2/`; the completed HH beta generation check is under `submission/evidence_beta/`.
+The final deliverables are `PA2_Submission.zip` and the separate
+`PA2_Report.pdf` placed next to it in the ready-to-submit folder. The archive's
+`report/` directory contains the LaTeX sources and figures; generated report
+PDFs are intentionally excluded. The preserved v1 evidence is under
+`submission/evidence/`; additive persona v2, environment, and analysis evidence
+is under `submission/evidence_v2/`; the completed HH beta generation check is
+under `submission/evidence_beta/`.
 
 Persona v3 is currently an additive follow-up. Its predeclared revised selection
 rule is `docs/persona_selection_rule_v2.md`; downloaded artifacts will be stored

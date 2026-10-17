@@ -243,3 +243,19 @@ Final publication gate used `PYTHONWARNINGS=ignore`: public tests **7/7** in
 results are the contents of the dated raw pytest output files packaged with the
 submission; PowerShell's UTF-16 capture was decoded and rewritten losslessly as
 UTF-8 for archive portability.
+
+## Final diagnostic-figure correction — 17 October 2026
+
+The four report figures were regenerated from the saved metrics at the exact
+LaTeX text width, with 2.3/2.5/2.5/2.8-inch heights, data-derived padded limits,
+external legends, and explicit selected-update markers. Three added regression
+tests verify PDF dimensions, plotted-data containment, and the required
+accuracy/persona extrema. The unchanged public suite passed **7/7** in 16.61
+seconds and the complete suite passed **86/86** in 67.73 seconds with warnings
+suppressed for the retained portable logs. The report-number checker passed.
+Three `pdflatex -interaction=nonstopmode -halt-on-error` passes produced an
+eight-page report with no overfull/underfull boxes, undefined references,
+missing glyphs, or LaTeX warnings. `latexmk` was attempted first but could not
+start because this MiKTeX installation has no Perl script engine; no document
+compilation occurred in that failed attempt. Every page from the successful
+build was rendered at 100 dpi and inspected.

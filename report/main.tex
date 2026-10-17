@@ -1,10 +1,12 @@
 \documentclass[10pt,a4paper]{article}
-\usepackage[margin=0.82in]{geometry}
+\usepackage[left=0.82in,right=0.82in,top=0.55in,bottom=0.55in]{geometry}
 \usepackage{booktabs,tabularx,graphicx,subcaption,microtype,xcolor,float,placeins,array,xspace}
 \usepackage[colorlinks=true,allcolors=blue!55!black]{hyperref}
-\setlength{\parindent}{0pt}\setlength{\parskip}{1.5pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{0.5pt}
 \hbadness=10000
-\setlength{\textfloatsep}{7pt}\setlength{\floatsep}{6pt}
+\setlength{\textfloatsep}{4pt}\setlength{\floatsep}{4pt}\setlength{\intextsep}{4pt}
+\setlength{\abovecaptionskip}{3pt}\setlength{\belowcaptionskip}{1pt}
+\renewcommand{\arraystretch}{0.95}
 \input{generated_numbers.tex}
 \title{PA2: Instruction Tuning and Direct Preference Optimization}
 \author{Analytical report from preserved run artifacts}
@@ -45,7 +47,8 @@ The matched HH beta pilots weakly support retaining the control beta: it has the
 \begin{subfigure}{\textwidth}\includegraphics[width=\linewidth]{figures/hh.pdf}\caption{HH DPO loss, implicit rewards, and validation pair accuracy.}\end{subfigure}
 \begin{subfigure}{\textwidth}\includegraphics[width=\linewidth]{figures/uf.pdf}\caption{UltraFeedback DPO loss, implicit rewards, and validation pair accuracy.}\end{subfigure}
 \caption{Main-track training diagnostics from saved journals. Training loss is a 25-update moving mean; validation points and rewards are unsmoothed. Rewards are policy/reference log-ratios and pair accuracy is a fraction. Dashed lines mark selected checkpoints.}\label{fig:training}
-\vspace{2pt}
+\end{figure*}
+\begin{figure*}[!htbp]\centering
 \includegraphics[width=\textwidth]{figures/persona_variants.pdf}
 \caption{Persona held-out diagnostics at every recorded epoch for all seven variants. Loss uses a logarithmic axis so both small losses and v3d's larger value remain visible; points are unsmoothed.}\label{fig:persona-training}
 \end{figure*}

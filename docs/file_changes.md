@@ -237,3 +237,18 @@ Added persona v2 configs, downloaded adapters/metrics/generations/judgments, HH 
   supplied the authentic saved outputs for notebook 00.
 
 - `moibbi/pa2-executed-environment-notebook` v5 completed and supplied the authentic executed `notebooks/00_setup_and_env_check.ipynb`, including two-T4 and package-version outputs.
+# Final diagnostic-figure correction — 17 October 2026
+
+- `scripts/report_revision.py`: generates all four diagnostic PDFs at the
+  document text width with adequate heights, equal grids, external legends,
+  data-derived limits, and distinct persona colors/markers.
+- `scripts/build_report_tex.py`: removed obsolete PNG copying and the superseded
+  duplicate persona plotter.
+- `tests/test_report_figures.py`: added PDF-size and plotted-range regressions.
+- `report/main.tex`: split the main and persona figures into valid floats and
+  tightened vertical spacing while retaining all required content in eight
+  pages.
+- `START_HERE.md`: clarified that `PA2_Report.pdf` is delivered separately and
+  that the ZIP contains report sources and figures.
+- Removed unused `report/figures/{sft,hh,uf,length}.png` copies. Experimental
+  evidence, results, judgments, examples, and selection outcomes were unchanged.

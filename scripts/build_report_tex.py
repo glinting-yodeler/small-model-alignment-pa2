@@ -1,7 +1,6 @@
 """Generate report macros, tables, and figures only from saved evidence."""
 import json
 from pathlib import Path
-import shutil
 
 
 def read(path):
@@ -16,12 +15,7 @@ def main():
     analysis = read("outputs/analysis/analysis.json")
     persona = read("outputs/analysis/persona_comparison.json")
     env = read("outputs/analysis/env_kaggle/env_kaggle_t4x2.json")
-    report = Path("report"); figures = report / "figures"; figures.mkdir(parents=True, exist_ok=True)
-    for source, name in (("submission/plots_revised/sft_diagnostics.png", "sft.png"),
-                         ("submission/plots_revised/dpo_hh_diagnostics.png", "hh.png"),
-                         ("submission/plots_revised/dpo_ultrafeedback_diagnostics.png", "uf.png"),
-                         ("outputs/analysis/length_repetition.png", "length.png")):
-        shutil.copy2(source, figures / name)
+    report = Path("report"); (report / "figures").mkdir(parents=True, exist_ok=True)
     ev, cis = analysis["evaluations"], analysis["bootstrap_95pct_ci"]
     unique = analysis["hh"]["unique_prompts"]
     revised_persona = next(row for row in persona["runs"] if row["run"] == persona["revised_selected"])
@@ -209,19 +203,6 @@ def main():
     groups["examples"].extend(example_prose)
     for name, items in groups.items():
         (report / f"generated_{name}.tex").write_text("\n".join(items) + "\n", encoding="utf-8")
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-    fig, axes = plt.subplots(1, 2, figsize=(7.1, 2.2))
-    for row in persona["runs"]:
-        points = row["epoch_diagnostics"]
-        axes[0].plot([p["epoch"] for p in points], [p["eval_loss"] for p in points], "o-", label=row["run"])
-        axes[1].plot([p["epoch"] for p in points], [p["eval_rewards/margins"] for p in points], "o-", label=row["run"])
-    axes[0].set(xlabel="Recorded epoch", ylabel="Held-out loss")
-    axes[1].set(xlabel="Recorded epoch", ylabel="Held-out reward margin")
-    for axis in axes:
-        axis.grid(alpha=.2); axis.legend(fontsize=7)
-    fig.tight_layout(); fig.savefig(figures / "persona_variants.pdf"); plt.close(fig)
     from report_revision import revise
     revise()
     print(json.dumps({"macros": len(values), "persona_runs": len(persona["runs"]), "beta_included": beta_path.exists()}))

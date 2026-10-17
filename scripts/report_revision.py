@@ -39,6 +39,135 @@ def config_rows():
     return configs
 
 
+
+TEXT_WIDTH_IN = 8.2677165354 - 2 * 0.82
+
+
+def _padded_limits(values, log=False):
+    """Return limits containing every finite plotted value with 5% padding."""
+    values = [float(value) for value in values]
+    low, high = min(values), max(values)
+    if log:
+        if low <= 0:
+            raise ValueError("Log-scaled report data must be positive")
+        return low / 1.05, high * 1.05
+    span = high - low
+    pad = 0.05 * span if span else max(abs(high) * 0.05, 0.05)
+    return low - pad, high + pad
+
+
+def build_report_figures(report=Path("report"), persona=None, close=True):
+    """Build final-width report figures and return axes plus their plotted data."""
+    try:
+        from scripts.build_report import rolling
+    except ModuleNotFoundError:
+        from build_report import rolling
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    report = Path(report)
+    persona = persona or read("outputs/analysis/persona_comparison.json")
+    plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 8,
+                         "xtick.labelsize": 7, "ytick.labelsize": 7,
+                         "axes.titlesize": 8, "axes.labelsize": 8,
+                         "legend.fontsize": 8})
+    stage_paths = {"sft": "submission/evidence/stages/sft",
+                   "hh": "submission/evidence/stages/dpo_hh",
+                   "uf": "submission/evidence/stages/dpo_ultrafeedback"}
+    stage_metrics, diagnostics = {}, {}
+    for key, path in stage_paths.items():
+        rows = [json.loads(line) for line in Path(path, "metrics.jsonl").read_text().splitlines() if line]
+        train = [row for row in rows if row["phase"] == "train"]
+        val = [row for row in rows if row["phase"] == "validation"]
+        stage_metrics[key] = (train, val)
+        if key == "sft":
+            fig, axes = plt.subplots(1, 1, figsize=(TEXT_WIDTH_IN, 2.3),
+                                     constrained_layout=True)
+            axes = [axes]
+            train_loss = rolling([row["loss"] for row in train])
+            val_loss = [row["loss"] for row in val]
+            axes[0].plot([row["step"] for row in train], train_loss,
+                         label="train (25-update mean)")
+            axes[0].plot([row["step"] for row in val], val_loss, "o-", label="validation")
+            axes[0].axvline(938, color="0.35", ls="--", lw=1, label="selected update 938")
+            axes[0].set(xlabel="Optimizer update", ylabel="CE loss", title="SFT loss",
+                        ylim=_padded_limits(train_loss + val_loss))
+            data = [train_loss + val_loss]
+            ncol = 3
+        else:
+            fig, axes_array = plt.subplots(1, 3, figsize=(TEXT_WIDTH_IN, 2.5),
+                                           constrained_layout=True,
+                                           gridspec_kw={"width_ratios": [1, 1, 1]})
+            axes = list(axes_array)
+            train_loss = rolling([row["loss"] for row in train])
+            val_loss = [row["loss"] for row in val]
+            chosen = [row["chosen_reward"] for row in val]
+            rejected = [row["rejected_reward"] for row in val]
+            margins = [row["reward_margin"] for row in val]
+            accuracy = [row["reward_accuracy"] for row in val]
+            steps_train = [row["step"] for row in train]
+            steps_val = [row["step"] for row in val]
+            axes[0].plot(steps_train, train_loss, label="train (25-update mean)")
+            axes[0].plot(steps_val, val_loss, "o-", label="validation")
+            axes[0].set(xlabel="Optimizer update", ylabel="DPO loss",
+                        ylim=_padded_limits(train_loss + val_loss))
+            axes[1].plot(steps_val, chosen, "o-", label="chosen")
+            axes[1].plot(steps_val, rejected, "s-", label="rejected")
+            axes[1].plot(steps_val, margins, "^-", label="margin")
+            axes[1].set(xlabel="Optimizer update", ylabel="Reward",
+                        ylim=_padded_limits(chosen + rejected + margins))
+            axes[2].plot(steps_val, accuracy, "o-", color="#7A5195",
+                         label="validation accuracy")
+            axes[2].set(xlabel="Optimizer update", ylabel="Accuracy",
+                        ylim=_padded_limits(accuracy))
+            for axis in axes:
+                axis.axvline(469, color="0.35", ls="--", lw=1,
+                             label="selected update 469")
+            data = [train_loss + val_loss, chosen + rejected + margins, accuracy]
+            ncol = 4
+        for axis in axes:
+            axis.grid(alpha=.2)
+        handles, labels = [], []
+        for axis in axes:
+            for handle, label in zip(*axis.get_legend_handles_labels()):
+                if label not in labels:
+                    handles.append(handle); labels.append(label)
+        fig.legend(handles, labels, loc="outside lower center", ncol=ncol)
+        fig.savefig(report / "figures" / f"{key}.pdf", pad_inches=.02)
+        diagnostics[key] = {"figure": fig, "axes": axes, "data": data}
+
+    colors = plt.get_cmap("tab10").colors
+    markers = "os^DvpP"
+    fig, axes_array = plt.subplots(1, 2, figsize=(TEXT_WIDTH_IN, 2.8),
+                                   constrained_layout=True,
+                                   gridspec_kw={"width_ratios": [1, 1]})
+    axes = list(axes_array)
+    loss_values, margin_values = [], []
+    for index, run in enumerate(persona["runs"]):
+        points = run["epoch_diagnostics"]
+        epochs = [point["epoch"] for point in points]
+        losses = [point["eval_loss"] for point in points]
+        margins = [point["eval_rewards/margins"] for point in points]
+        loss_values.extend(losses); margin_values.extend(margins)
+        axes[0].plot(epochs, losses, marker=markers[index], color=colors[index], label=run["run"])
+        axes[1].plot(epochs, margins, marker=markers[index], color=colors[index], label="_nolegend_")
+    axes[0].set(xlabel="Recorded epoch", ylabel="Loss", yscale="log",
+                ylim=_padded_limits(loss_values, log=True))
+    axes[1].set(xlabel="Recorded epoch", ylabel="Margin",
+                ylim=_padded_limits(margin_values))
+    for axis in axes:
+        axis.grid(alpha=.2)
+    fig.legend(loc="outside lower center", ncol=4)
+    fig.savefig(report / "figures" / "persona_variants.pdf", pad_inches=.02)
+    diagnostics["persona"] = {"figure": fig, "axes": axes,
+                              "data": [loss_values, margin_values]}
+    if close:
+        for item in diagnostics.values():
+            plt.close(item["figure"])
+    return stage_metrics, diagnostics
+
+
 def revise():
     report = Path("report")
     analysis = read("outputs/analysis/analysis.json")
@@ -184,48 +313,8 @@ def revise():
       "\\begin{table}[H]\\centering\\scriptsize\\caption{Matched 150-update HH beta pilots. Generation compares each candidate with $\\beta=.10$ on 300 blinded rows; brackets are bootstrap 95\\% CIs.}\\label{tab:hh-beta}\\begin{tabular}{rrrrrl}\\toprule $\\beta$&Update&Accuracy&Margin&Loss&Generation W/L/T; score [CI]\\\\\\midrule\n"+"\n".join(beta_rows)+"\n\\bottomrule\\end{tabular}\\end{table}\n")
     (report/"generated_diagnostics.tex").write_text(dtex,encoding="utf-8")
 
-    # Redraw the three training panels at their final printed width so text stays >=7 pt.
-    try:
-        from scripts.build_report import rolling
-    except ModuleNotFoundError:
-        from build_report import rolling
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-    plt.rcParams.update({"font.family":"DejaVu Sans","font.size":8,
-                         "xtick.labelsize":7,"ytick.labelsize":7,
-                         "axes.titlesize":8,"axes.labelsize":8,"legend.fontsize":7})
-    stage_paths={"sft":"submission/evidence/stages/sft","hh":"submission/evidence/stages/dpo_hh",
-                 "uf":"submission/evidence/stages/dpo_ultrafeedback"}
-    stage_metrics = {}
-    for key,path in stage_paths.items():
-        rows=[json.loads(line) for line in Path(path,"metrics.jsonl").read_text().splitlines() if line]
-        train=[r for r in rows if r['phase']=='train']; val=[r for r in rows if r['phase']=='validation']
-        stage_metrics[key] = (train, val)
-        if key=='sft':
-            fig,ax=plt.subplots(figsize=(7.1,1.60),constrained_layout=True); ax.plot([r['step'] for r in train],rolling([r['loss'] for r in train]),label='train (25-update mean)')
-            ax.plot([r['step'] for r in val],[r['loss'] for r in val],'o-',label='validation')
-            ax.axvline(938,color='0.35',ls='--',lw=1,label='selected update 938')
-            ax.set(xlabel='Optimizer update',ylabel='CE loss',title='SFT loss'); ax.legend(loc='upper right',ncol=3)
-        else:
-            fig,axes=plt.subplots(1,3,figsize=(7.1,1.85),constrained_layout=True); axes[0].plot([r['step'] for r in train],rolling([r['loss'] for r in train]),label='train (25-update mean)')
-            axes[0].plot([r['step'] for r in val],[r['loss'] for r in val],'o-',label='validation'); axes[0].set(xlabel='Optimizer update',ylabel='DPO loss')
-            axes[1].plot([r['step'] for r in val],[r['chosen_reward'] for r in val],'o-',label='chosen')
-            axes[1].plot([r['step'] for r in val],[r['rejected_reward'] for r in val],'s-',label='rejected')
-            axes[1].plot([r['step'] for r in val],[r['reward_margin'] for r in val],'^-',label='margin')
-            axes[1].set(xlabel='Optimizer update',ylabel='Reward')
-            axes[2].plot([r['step'] for r in val],[r['reward_accuracy'] for r in val],'o-',color='#7A5195',label='validation accuracy'); axes[2].set(xlabel='Optimizer update',ylabel='Accuracy')
-            for a in axes: a.axvline(469,color='0.35',ls='--',lw=1,label='selected update 469')
-            handles,labels=[],[]
-            for a in axes:
-                for h,l in zip(*a.get_legend_handles_labels()):
-                    if l not in labels: handles.append(h); labels.append(l)
-            fig.legend(handles,labels,loc='lower center',ncol=4,bbox_to_anchor=(.5,-.01))
-            fig.get_layout_engine().set(rect=(0,.27,1,1),w_pad=6/72,h_pad=3/72)
-            ax=axes[0]
-        for axis in fig.axes: axis.grid(alpha=.2)
-        if key == 'sft': fig.get_layout_engine().set(w_pad=8/72,h_pad=3/72)
-        fig.savefig(report/f"figures/{key}.pdf"); plt.close(fig)
+    # Figures are generated from saved JSONL/JSON at the exact LaTeX text width.
+    stage_metrics, _ = build_report_figures(report, persona, close=True)
 
     sft_val = stage_metrics["sft"][1]
     hh_val = stage_metrics["hh"][1]
@@ -248,25 +337,3 @@ def revise():
             r=examples[track][outcome]; note=notes[r['id']]['note']
             prose.append(f"\\paragraph{{{esc(track)} {outcome} ({esc(r['prompt_id'])}).}} \\textbf{{Prompt:}} {esc(r['prompt'])} \\textbf{{{esc(r.get('candidate_label','DPO'))}:}} {esc(r['candidate'])} \\textbf{{{esc(r.get('baseline_label','SFT'))}:}} {esc(r['baseline'])} \\textbf{{Analysis:}} {esc(note)}")
     (report/"generated_examples.tex").write_text("\n".join(prose)+"\n",encoding="utf-8")
-
-    # Colorblind-safe persona figure with distinct markers and external legend.
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-    colors=plt.get_cmap("tab10").colors; markers="os^DvpP"
-    plt.rcParams.update({"font.size":8,"axes.labelsize":8,"legend.fontsize":7})
-    fig,axes=plt.subplots(1,2,figsize=(7.1,2.15),constrained_layout=True)
-    loss_values=[]; margin_values=[]
-    for i,r in enumerate(persona["runs"]):
-        pts=r["epoch_diagnostics"]
-        loss_values.extend(p['eval_loss'] for p in pts)
-        margin_values.extend(p['eval_rewards/margins'] for p in pts)
-        axes[0].plot([p['epoch'] for p in pts],[p['eval_loss'] for p in pts],marker=markers[i],color=colors[i],label=r['run'])
-        axes[1].plot([p['epoch'] for p in pts],[p['eval_rewards/margins'] for p in pts],marker=markers[i],color=colors[i],label="_nolegend_")
-    axes[0].set(xlabel="Recorded epoch",ylabel="Loss",yscale="log"); axes[1].set(xlabel="Recorded epoch",ylabel="Margin")
-    axes[0].set_ylim(min(loss_values)*.70,max(loss_values)*1.35)
-    margin_span=max(margin_values)-min(margin_values)
-    axes[1].set_ylim(max(0,min(margin_values)-.10*margin_span),max(margin_values)+.15*margin_span)
-    for ax in axes: ax.grid(alpha=.2)
-    fig.legend(loc="lower center",ncol=4,bbox_to_anchor=(.5,-.01)); fig.get_layout_engine().set(rect=(0,.27,1,1),w_pad=8/72,h_pad=3/72)
-    fig.savefig(report/"figures/persona_variants.pdf"); plt.close(fig)
