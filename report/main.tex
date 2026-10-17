@@ -17,6 +17,7 @@ Custom SFT and DPO training aligned Qwen2.5-0.5B on UltraChat, HH-RLHF, and Ultr
 \input{generated_headline.tex}
 
 \section{Repository, models, and data}
+GitHub username: \texttt{glinting-yodeler}\\
 GitHub repository: \url{https://github.com/glinting-yodeler/small-model-alignment-pa2}
 
 SFT used a pinned Qwen2.5-0.5B base and the two full-parameter DPO policies used the exact selected SFT checkpoint as both initialization and frozen reference. Persona used the manual-required SmolLM2-360M-Instruct base with LoRA. Prepared manifests preserve source revisions, deterministic seed-based splits, overlap removal, filtering counts, and hashes. Training/validation sizes were read directly from those manifests by the report generator.

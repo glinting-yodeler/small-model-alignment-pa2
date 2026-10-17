@@ -20,9 +20,8 @@ def scan(entries):
 
 
 def test_clean_archive_hygiene():
-    result = scan({"README.md": "clean relative documentation\n",
-                   "submission/PA2_report_final.pdf": b"pdf"})
-    assert result["report_pdfs"] == ["submission/PA2_report_final.pdf"]
+    result = scan({"README.md": "clean relative documentation\n"})
+    assert result["report_pdfs"] == []
     assert not any(result[key] for key in ("forbidden_filenames", "bom_files",
                    "mojibake_files", "absolute_path_files", "identity_string_files"))
 
@@ -41,7 +40,7 @@ def test_clean_archive_hygiene():
     ("docs/overnight_status.md", "process", "forbidden_filenames"),
 ])
 def test_archive_hygiene_detects_forbidden_content(name, content, field):
-    result = scan({name: content, "submission/PA2_report_final.pdf": b"pdf"})
+    result = scan({name: content})
     assert name in result[field]
 
 

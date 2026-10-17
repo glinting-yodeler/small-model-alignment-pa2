@@ -1,6 +1,8 @@
 """Create a lightweight, auditable PA2 handoff ZIP from verified local files."""
 import argparse
 from pathlib import Path
+import shutil
+import tempfile
 import zipfile
 
 
@@ -49,7 +51,10 @@ def build(root, target, report_path):
                        and (p.suffix.lower() != ".log" or
                             p.relative_to(root).as_posix().startswith("kaggle_smoke/"))
                        and p.suffix.lower() not in {".aux", ".out", ".fls", ".fdb_latexmk"}
-                       and p != root / "submission" / "PA2_report.pdf"
+                       and p != root / "report" / "main.pdf"
+                       and not (p.parent == root / "submission"
+                                and p.name.casefold().startswith("pa2_report")
+                                and p.suffix.casefold() == ".pdf")
                        and "submission/plots/" not in p.relative_to(root).as_posix()
                        and not p.name.endswith((".pyc", ".pt"))
                        and (p.suffix != ".safetensors" or
@@ -58,9 +63,26 @@ def build(root, target, report_path):
                             p.relative_to(root).as_posix().startswith("submission/evidence_v2/persona/") or
                             p.relative_to(root).as_posix().startswith("submission/evidence_v3/training/"))})
     target.parent.mkdir(parents=True, exist_ok=True)
-    with zipfile.ZipFile(target, "w", zipfile.ZIP_DEFLATED) as archive:
-        for path in selected:
-            archive.write(path, path.relative_to(root).as_posix())
+    # Build from a new disposable staging tree instead of updating an existing
+    # archive. Fixed timestamps and sorted relative paths make repeat builds
+    # byte-for-byte deterministic.
+    with tempfile.TemporaryDirectory(prefix=".pa2_stage_", dir=target.parent) as stage_name:
+        stage = Path(stage_name)
+        for source in selected:
+            relative = source.relative_to(root)
+            staged = stage / relative
+            staged.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(source, staged)
+        temporary = stage / "PA2_Submission.zip"
+        with zipfile.ZipFile(temporary, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
+            for path in sorted(p for p in stage.rglob("*") if p.is_file() and p != temporary):
+                relative = path.relative_to(stage).as_posix()
+                info = zipfile.ZipInfo(relative, date_time=(2026, 10, 17, 0, 0, 0))
+                info.compress_type = zipfile.ZIP_DEFLATED
+                info.external_attr = 0o100644 << 16
+                archive.writestr(info, path.read_bytes(), compress_type=zipfile.ZIP_DEFLATED,
+                                 compresslevel=9)
+        shutil.copyfile(temporary, target)
     print(f"{target}: {len(selected)} files, {target.stat().st_size} bytes, {len(pages)} report pages")
 
 

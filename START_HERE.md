@@ -12,6 +12,8 @@ The custom PyTorch SFT and main DPO loops are in `alignment/`. Persona alone use
 
 The seven public tests remain unchanged. Run the complete offline suite with `.venv-local\Scripts\python.exe -m pytest -q`. Rebuild the report inputs with `.venv-local\Scripts\python.exe scripts/build_report_tex.py`, verify numbers with `.venv-local\Scripts\python.exe scripts/check_report_numbers.py`, and compile `report/main.tex`.
 
-No university submission or GitHub push was performed.
+The verified public repository is published on the `main` branch. Use `git
+rev-parse HEAD` and `git ls-remote origin refs/heads/main` to confirm the exact
+submitted revision before uploading the deliverables.
 
 The final additive persona-v3 evidence is in `submission/evidence_v3/`. The revised rule selected v3b before judgment; all seven variants and both historical/revised choices are reported.

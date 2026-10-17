@@ -203,6 +203,7 @@ def main():
 
     p("PA2: Instruction Tuning and Direct Preference Optimization", title)
     p("Analytical report from preserved training, generation, and blinded-judgment artifacts", caption)
+    p("GitHub username: glinting-yodeler")
     p(f"Repository: {args.repository_url}" if args.repository_url else
       "GitHub repository: https://github.com/glinting-yodeler/small-model-alignment-pa2")
     heading("1. Experimental question and headline findings")

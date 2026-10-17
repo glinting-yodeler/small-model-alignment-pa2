@@ -103,7 +103,7 @@ def validate(root: Path, archive: Path, report: Path) -> dict:
                  or name == "docs/codex_state.md"
                  or name == "submission/PA2_report.pdf"
                  or name.startswith("submission/plots/")]
-    required = {"submission/PA2_report_final.pdf", "report/main.tex",
+    required = {"report/main.tex",
                 "submission/evidence/evidence_manifest.json",
                 "submission/evidence_v2/evidence_manifest.json",
                 "submission/evidence_v3/evidence_manifest.json",
@@ -131,7 +131,10 @@ def validate(root: Path, archive: Path, report: Path) -> dict:
     result["missing_manifest_files"] = missing_manifest_files
     hygiene_failed = any(hygiene[key] for key in ("forbidden_filenames", "bom_files",
                          "mojibake_files", "absolute_path_files", "identity_string_files"))
-    if len(hygiene["report_pdfs"]) != 1:
+    # The manual lists the report PDF as a separate submission item.  Report
+    # source and figures stay in the project archive; generated report PDFs do
+    # not, preventing two potentially divergent submission copies.
+    if hygiene["report_pdfs"]:
         hygiene_failed = True
     evidence_counts = (result["evidence_files"], result["evidence_v2_files"],
                        result["evidence_v3_files"])
