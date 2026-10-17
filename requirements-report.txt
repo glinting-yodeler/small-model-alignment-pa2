@@ -1,0 +1,4 @@
+# Local rendering only; no Kaggle torch changes.
+reportlab==4.4.0
+pypdf==6.1.1
+matplotlib==3.10.1

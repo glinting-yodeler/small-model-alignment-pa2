@@ -1,0 +1,14 @@
+{
+  "mode": "hh",
+  "checkpoints": {
+    "dpo_hh": "/kaggle/input/notebooks/moibbi/pa2-dpo-hh-full/outputs/dpo_hh/best"
+  },
+  "results": {
+    "generate_dpo_hh": {
+      "count": 300,
+      "sha256": "66ef8dbe0e3d0e8ba348492ba2e997e082428146ab8286264cdaf8490c702f0b",
+      "path": "/kaggle/working/outputs/generations/dpo_hh.json"
+    }
+  },
+  "torch": "2.11.0+cu128"
+}

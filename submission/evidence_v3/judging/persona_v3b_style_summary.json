@@ -1,0 +1,19 @@
+{
+  "persona_v3b_style": {
+    "N": 20,
+    "W": 7,
+    "L": 7,
+    "T": 6,
+    "U": 0,
+    "F": 0,
+    "retries": 0,
+    "decisive_win_rate": 0.5,
+    "tie_adjusted_score": 0.5,
+    "raw_win_rate": 0.35,
+    "valid_coverage": 1.0,
+    "unknown_rate": 0.0,
+    "failure_rate": 0.0,
+    "request_attempts": 4,
+    "pair_retries_including_failures": 0
+  }
+}

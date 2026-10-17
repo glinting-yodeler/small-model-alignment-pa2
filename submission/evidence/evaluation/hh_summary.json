@@ -1,0 +1,19 @@
+{
+  "hh": {
+    "N": 300,
+    "W": 126,
+    "L": 90,
+    "T": 84,
+    "U": 0,
+    "F": 0,
+    "retries": 3,
+    "decisive_win_rate": 0.5833333333333334,
+    "tie_adjusted_score": 0.56,
+    "raw_win_rate": 0.42,
+    "valid_coverage": 1.0,
+    "unknown_rate": 0.0,
+    "failure_rate": 0.0,
+    "request_attempts": 63,
+    "pair_retries_including_failures": 3
+  }
+}

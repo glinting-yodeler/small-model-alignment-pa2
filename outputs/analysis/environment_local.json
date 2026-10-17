@@ -1,0 +1,13 @@
+{
+  "nvidia_smi": "nvidia-smi unavailable",
+  "cuda_device_count": 0,
+  "cuda_device_names": [],
+  "versions": {
+    "torch": "2.14.1+cpu",
+    "transformers": "4.51.3",
+    "datasets": "3.6.0",
+    "trl": "0.18.1",
+    "peft": "0.15.2",
+    "accelerate": "1.6.0"
+  }
+}

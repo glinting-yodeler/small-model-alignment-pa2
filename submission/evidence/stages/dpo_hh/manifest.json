@@ -1,0 +1,35 @@
+{
+  "commit": null,
+  "versions": {
+    "torch": "2.11.0+cu128",
+    "transformers": "4.51.3",
+    "datasets": "3.6.0",
+    "trl": "0.18.1",
+    "peft": "0.15.2",
+    "accelerate": "1.6.0"
+  },
+  "source_hash": "af5eb1d7e12194d9c05b57b649ee19c10dd28be91652f1cd70de4722d5ff308a",
+  "source_files": {
+    "alignment/__init__.py": "e588630b29f1de99a539400cecef93eecb37e90fd41e81f42e0b6a32bdd9eb3a",
+    "alignment/batching.py": "20cae30b56a0922612bde6489a0d08c28780080e2c1b6154eeeeb80a82dca614",
+    "alignment/checkpointing.py": "9b27d59f6ed719b9468ad56937a205c2decda0ccc961ab22ec4c2bbb841cbfe7",
+    "alignment/cli.py": "64aaffb44eea94e0b1c4224a04ee0e23ecd9b0097ecd0197918697afa120d580",
+    "alignment/data.py": "64cea4245ba734adc16ddf745edb00e0dc44a7a3c8c4345a337a68eab68b6f10",
+    "alignment/formatting.py": "4019a0e7b130a5bc1b41e889e21674b139b11443a40f76f5e80a4aedbe3f270c",
+    "alignment/generation.py": "4b43e7c240978c1872a603e36ce26fc133554ffccd32209143750b1af90d8e6f",
+    "alignment/inputs.py": "84ee968d5a6b7277e5d8e904b75ff86481072474a451477acbe84721a4523bf7",
+    "alignment/io.py": "cb8d56de47d15d3821339f013e407fa8f3d86bc2f0d982bef12ef18048b41733",
+    "alignment/judging.py": "4d9d156d2c1267b1fd2c47cea68b9b94d67ab9edd6983ba6ea2cee806e17bac2",
+    "alignment/losses.py": "92946d51b49c23ea7ffe4a0ad9a5040dc792393831025d52a5c605e1ab766787",
+    "alignment/pairwise.py": "7aa0bf9797a03f76d1dd267d864ff48988d989e045096fc69f4b3ac66b33a6a1",
+    "alignment/persona.py": "cb93d4a8acc6bf0a5cf1763dab78f63f74c3b73b92c740f425a84a7e5b9c6701",
+    "alignment/plotting.py": "6579ee3fbff800856a11d5c3b24894b5b06ab006e2c75dea7e25d80c16286c68",
+    "alignment/preparation.py": "70ac22894ddb6c4e5c11f49051cbbe9748775cf66baf18804809dad24425b5a7",
+    "alignment/training.py": "98b4dcb24d420411a041e5a2a4ff441d227a26c605a476640983a541985749b7",
+    "submission_adapter.py": "786361d42cb2cd1be1cfa1976e6a8875d7d614cf9885f647ba793da36a1b08b8"
+  },
+  "identity": "bab090d0a2fe1ec78642ac2254557bb56975521c9b5d56e1b76fe53265b9a7d2",
+  "template": "### Instruction:\n{instruction}\n\n### Response:\n",
+  "train_count": 15000,
+  "validation_count": 1000
+}

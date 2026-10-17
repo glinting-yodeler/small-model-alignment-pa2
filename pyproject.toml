@@ -10,4 +10,8 @@ requires-python = ">=3.10"
 dependencies = []
 
 [tool.setuptools]
-packages = []
+packages = ["alignment"]
+py-modules = ["submission_adapter"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

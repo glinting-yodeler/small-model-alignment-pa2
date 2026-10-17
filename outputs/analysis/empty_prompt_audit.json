@@ -1,0 +1,55 @@
+{
+  "method": "exact scan of frozen prepared JSON; tokenizer-empty prompts are additionally counted at training encode time",
+  "splits": [
+    {
+      "track": "sft",
+      "split": "train",
+      "path": "data/prepared/sft/train.json",
+      "examples": 30000,
+      "empty_source_prompts": 0,
+      "empty_formatted_strings": 0
+    },
+    {
+      "track": "sft",
+      "split": "validation",
+      "path": "data/prepared/sft/validation.json",
+      "examples": 1000,
+      "empty_source_prompts": 0,
+      "empty_formatted_strings": 0
+    },
+    {
+      "track": "hh",
+      "split": "train",
+      "path": "data/prepared/hh/train.json",
+      "examples": 15000,
+      "empty_source_prompts": 0,
+      "empty_formatted_strings": 0
+    },
+    {
+      "track": "hh",
+      "split": "validation",
+      "path": "data/prepared/hh/validation.json",
+      "examples": 1000,
+      "empty_source_prompts": 0,
+      "empty_formatted_strings": 0
+    },
+    {
+      "track": "ultrafeedback",
+      "split": "train",
+      "path": "data/prepared/ultrafeedback/train.json",
+      "examples": 15000,
+      "empty_source_prompts": 0,
+      "empty_formatted_strings": 0
+    },
+    {
+      "track": "ultrafeedback",
+      "split": "validation",
+      "path": "data/prepared/ultrafeedback/validation.json",
+      "examples": 1000,
+      "empty_source_prompts": 0,
+      "empty_formatted_strings": 0
+    }
+  ],
+  "empty_source_total": 0,
+  "empty_formatted_string_total": 0
+}

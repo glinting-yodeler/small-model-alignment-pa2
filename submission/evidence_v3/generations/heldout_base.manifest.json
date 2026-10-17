@@ -1,0 +1,45 @@
+{
+  "commit": null,
+  "versions": {
+    "torch": "2.11.0+cu128",
+    "transformers": "4.51.3",
+    "datasets": "3.6.0",
+    "trl": "0.18.1",
+    "peft": "0.15.2",
+    "accelerate": "1.6.0"
+  },
+  "source_hash": "98f51cd34f21c70716bba0777b2a9e294f67af140d15cd74a0c2d0033f57d51f",
+  "source_files": {
+    "alignment/__init__.py": "e588630b29f1de99a539400cecef93eecb37e90fd41e81f42e0b6a32bdd9eb3a",
+    "alignment/batching.py": "20cae30b56a0922612bde6489a0d08c28780080e2c1b6154eeeeb80a82dca614",
+    "alignment/checkpointing.py": "9b27d59f6ed719b9468ad56937a205c2decda0ccc961ab22ec4c2bbb841cbfe7",
+    "alignment/cli.py": "9a3cbabefbffb9a6c0473eab227b566c1a927bb41d1ee63eb0ccaa70a8129346",
+    "alignment/data.py": "64cea4245ba734adc16ddf745edb00e0dc44a7a3c8c4345a337a68eab68b6f10",
+    "alignment/formatting.py": "4019a0e7b130a5bc1b41e889e21674b139b11443a40f76f5e80a4aedbe3f270c",
+    "alignment/generation.py": "4b43e7c240978c1872a603e36ce26fc133554ffccd32209143750b1af90d8e6f",
+    "alignment/inputs.py": "84ee968d5a6b7277e5d8e904b75ff86481072474a451477acbe84721a4523bf7",
+    "alignment/io.py": "cb8d56de47d15d3821339f013e407fa8f3d86bc2f0d982bef12ef18048b41733",
+    "alignment/judging.py": "163ba1f082afd713d0a9e801eec5c2b7ea5131c3021c43210fb643c6398b1624",
+    "alignment/losses.py": "ed55f997f77fc34e28d846bfd1d27072fa9526a6c02d758a201ff7e4ff7dc22a",
+    "alignment/pairwise.py": "7aa0bf9797a03f76d1dd267d864ff48988d989e045096fc69f4b3ac66b33a6a1",
+    "alignment/persona.py": "e8709d9b000b10061a8ee8745210a59c60fbbb3ec43284cb7db149cc7e0ee1aa",
+    "alignment/plotting.py": "6aabb1e3c37cb56bec60a94fb4f87127cc305f2fd3cf95fb0c36364c3e6fbab4",
+    "alignment/preparation.py": "70ac22894ddb6c4e5c11f49051cbbe9748775cf66baf18804809dad24425b5a7",
+    "alignment/training.py": "db88b8a01a38a372c441dbfd1a2276db5090c3a8fd14f89790d68d35bba004b6",
+    "submission_adapter.py": "786361d42cb2cd1be1cfa1976e6a8875d7d614cf9885f647ba793da36a1b08b8"
+  },
+  "identity": "70b9b4aa94f624120c595713710f9adde64b91e74a85627aa5a11c9650849941",
+  "config": {
+    "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "prompts": "/kaggle/working/outputs/persona_heldout_22.json",
+    "output": "/kaggle/working/outputs/generations/heldout_base.json",
+    "generator": "smollm2-persona-heldout-base",
+    "device": "cuda:0",
+    "batch_size": 2,
+    "max_new_tokens": 256,
+    "repetition_penalty": 1.0,
+    "format": "chat",
+    "revision": "a10cc1512eabd3dde888204e902eca88bddb4951"
+  },
+  "checkpoint": "a10cc1512eabd3dde888204e902eca88bddb4951"
+}

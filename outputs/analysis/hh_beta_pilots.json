@@ -1,0 +1,77 @@
+{
+  "purpose": "validation diagnostics only; submitted HH checkpoint unchanged",
+  "runs": [
+    {
+      "beta": 0.05,
+      "path": "outputs/hh_beta_pilots_v2/outputs/dpo_hh_beta005_pilot/metrics.jsonl",
+      "validation": [
+        {
+          "step": 50,
+          "reward_accuracy": 0.552,
+          "reward_margin": 0.038359667152632025,
+          "loss": 0.6810033744871616
+        },
+        {
+          "step": 100,
+          "reward_accuracy": 0.567,
+          "reward_margin": 0.06565716440230608,
+          "loss": 0.6795118000209331
+        },
+        {
+          "step": 150,
+          "reward_accuracy": 0.588,
+          "reward_margin": 0.09735013671359047,
+          "loss": 0.6747075678259135
+        }
+      ]
+    },
+    {
+      "beta": 0.1,
+      "path": "outputs/hh_beta_pilots_v2/outputs/dpo_hh_beta01_pilot/metrics.jsonl",
+      "validation": [
+        {
+          "step": 50,
+          "reward_accuracy": 0.553,
+          "reward_margin": 0.062236130390316245,
+          "loss": 0.6811061752289533
+        },
+        {
+          "step": 100,
+          "reward_accuracy": 0.57,
+          "reward_margin": 0.0954064482813701,
+          "loss": 0.6823985876515508
+        },
+        {
+          "step": 150,
+          "reward_accuracy": 0.589,
+          "reward_margin": 0.13453461257647722,
+          "loss": 0.675903922520578
+        }
+      ]
+    },
+    {
+      "beta": 0.3,
+      "path": "outputs/hh_beta_pilots_v2/outputs/dpo_hh_beta03_pilot/metrics.jsonl",
+      "validation": [
+        {
+          "step": 50,
+          "reward_accuracy": 0.555,
+          "reward_margin": 0.10898018964938819,
+          "loss": 0.6964015737380832
+        },
+        {
+          "step": 100,
+          "reward_accuracy": 0.558,
+          "reward_margin": 0.16841898406669498,
+          "loss": 0.7015497090369462
+        },
+        {
+          "step": 150,
+          "reward_accuracy": 0.578,
+          "reward_margin": 0.18510046583553777,
+          "loss": 0.6935922695612535
+        }
+      ]
+    }
+  ]
+}

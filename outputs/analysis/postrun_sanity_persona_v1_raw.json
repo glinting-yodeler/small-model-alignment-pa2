@@ -1,0 +1,24 @@
+[
+  {
+    "id": "persona-cooking-0",
+    "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "adapter": "submission/evidence/stages/persona/adapter",
+    "tokenizer": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "formatted_prompt": "<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n<|im_start|>user\nExplain how to rescue a split hollandaise sauce without starting over.<|im_end|>\n<|im_start|>assistant\n",
+    "raw_output": "Sure, I can help with that. To rescue a split hollandaise sauce, you need to follow these steps:\n\n1. First, you need to separate the egg yolks from the egg whites. To do this, you can use a whisk.\n\n2. Now, you need to separate the egg yolks from the egg whites. You can do this by gently separating the egg whites from the egg yolks.\n\n3. Next, you need to whisk the egg yolks with a little bit of lemon juice and a pinch of salt. This will help to separate the egg yolks from the egg whites.\n\n4. Now, you need to whisk the egg whites with a little bit of lemon juice and a pinch of salt. This will help to separate the egg whites from the egg yolks.\n\n5. Now, you need to whisk the egg yolks with the egg whites. This will help to combine the egg yolks and egg whites.\n\n6. Now, you need to whisk the egg whites with a little bit of lemon juice and a pinch of salt. This will help to combine the egg whites and egg yolks.\n\n7. Now, you need to whisk the egg whites with a little bit of lemon juice and a pinch of salt. This will help to combine the",
+    "eos_present": false,
+    "token_count": 256,
+    "template": "{% for message in messages %}{% if loop.first and messages[0]['role'] != 'system' %}{{ '<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n' }}{% endif %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}"
+  },
+  {
+    "id": "persona-cooking-1",
+    "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "adapter": "submission/evidence/stages/persona/adapter",
+    "tokenizer": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "formatted_prompt": "<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n<|im_start|>user\nPlan a balanced dinner using lentils, carrots and yogurt.<|im_end|>\n<|im_start|>assistant\n",
+    "raw_output": "Sure, here's a balanced dinner plan using lentils, carrots, and yogurt:\n\n**Breakfast**\n1. Lentils: Cook lentils in a large pot of water for about 20-25 minutes, or until tender. Drain and set aside.\n2. Carrots: Peel and slice carrots into thin sticks.\n3. Yogurt: Mix 1 cup of yogurt with 1/2 cup of honey and 1/2 cup of maple syrup.\n\n**Lunch**\n1. Lentil Soup: Bring a large pot of lentils to a boil, then reduce to a simmer and cook for about 20-25 minutes, or until tender. Add a handful of fresh herbs like dill or parsley for flavor.\n2. Carrot Soup: Cook carrots in a large pot of water for about 10-15 minutes, or until tender. Add a handful of fresh herbs like dill or parsley for flavor.\n\n**Dinner**\n1. Lentil and Carrot Soup: Combine the cooked lentils and carrots in a large pot. Add a handful of fresh herbs like dill or parsley for flavor.\n2. Yogurt: Pour the yogurt mixture over the soup.",
+    "eos_present": false,
+    "token_count": 256,
+    "template": "{% for message in messages %}{% if loop.first and messages[0]['role'] != 'system' %}{{ '<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n' }}{% endif %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}"
+  }
+]

@@ -1,0 +1,33 @@
+{
+  "torch": "2.11.0+cu128",
+  "gpus": [
+    "Tesla T4",
+    "Tesla T4"
+  ],
+  "runs": [
+    {
+      "label": "beta005",
+      "beta": 0.05,
+      "updates": 150,
+      "generation_count": 300,
+      "generation_sha256": "277d91191c250e5d9d0976e2d1d934c3083591bb308194d527b5f3c99e24c18b",
+      "sanity_sha256": "aaf912b32799ebeaf20ddb447ab63334355d3afd43511112bbd7b6c695ac7d77"
+    },
+    {
+      "label": "beta01",
+      "beta": 0.1,
+      "updates": 150,
+      "generation_count": 300,
+      "generation_sha256": "ef91abd51ee582dacfe583033d9ed5f503ad22a74ba80dcf04049cbf1253375f",
+      "sanity_sha256": "e1db29daba71321b1a6d0bf7ba2e9efbf1c30052a4738401cfa4390f3cf0f01a"
+    },
+    {
+      "label": "beta03",
+      "beta": 0.3,
+      "updates": 150,
+      "generation_count": 300,
+      "generation_sha256": "8fe17b646fe225f04d5da5cb11851e73be187b49dc0f753dc9c8e867548a3848",
+      "sanity_sha256": "ed2a001954868fb8a9c4117d0322eab09f9b0d173bd845f310fbe5f83525c5b7"
+    }
+  ]
+}

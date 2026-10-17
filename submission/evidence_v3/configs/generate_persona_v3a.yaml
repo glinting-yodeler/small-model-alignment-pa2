@@ -1,0 +1,13 @@
+{
+  "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+  "prompts": "eval_sets/persona_eval_20.json",
+  "output": "/kaggle/working/outputs/generations/persona_v3a.json",
+  "generator": "smollm2-persona-v3a",
+  "device": "cuda:0",
+  "batch_size": 2,
+  "max_new_tokens": 256,
+  "repetition_penalty": 1.0,
+  "format": "chat",
+  "revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+  "adapter": "/kaggle/working/outputs/v3a/adapter"
+}

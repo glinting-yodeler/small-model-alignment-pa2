@@ -1,0 +1,52 @@
+{
+  "commit": "7f2e6bc6a6f48f0843bda5e4e7be3b2151ce4a45",
+  "files": {
+    ".gitignore": "cac0352c070b86662c081841692dd52ecb3be2803ad3c12866c77d6a6ae90c57",
+    "PA2_Codex_Implementation_Plan.md": "ea8fbd75dc6187169e091870c2800fb7440738ce18378ba1a1ed5ffddc1240ff",
+    "pyproject.toml": "ae422be68fbe78c2720d45331e69208f0d537d3789eccdf94ad649c99e6ef59e",
+    "README.md": "68c45e12b0992466929f5e85fa19a632e99d837322f860653b0d479a3a205299",
+    "requirements.txt": "d496c9e79a77047751086010be76f4fafb31265cc18fd7094930e091a3ce498d",
+    "submission_adapter.py": "d51866c1d27b1959f5da6ed390a226c040bafe4efaec98edb96af8c085abc2ba",
+    "data/persona_lora/ramsay_style_preferences.json": "e1ceb0e49fd25c1adb9fef1862123d9b9d0f82fab8966c9406341117e3675a2a",
+    "data/persona_lora/README.md": "f9c67da1af739ecab91a28f8a6296edffdd6b386e591e5c29914cec020c1aa16",
+    "docs/assignment_manual.pdf": "90e0eb2c691b957ecc8a508d89a586bf07c91a9dec65211d938f9eecf8dc0202",
+    "eval_sets/hh_rlhf_eval_300_seed42.json": "295ed7428937a3e8c611bd13c4aa85084d5dc1d7890e2faf057767aa28dd8042",
+    "kaggle_smoke/cpu/kernel-metadata.json": "b295017f62d493065557a6fd1913a10c918007b5ed3e2c69964739aca389bcad",
+    "kaggle_smoke/cpu/smoke.py": "fbce68ee091c59cf51502035a7e3097a3caf1e00e29edb86dd970e4a743c1e1d",
+    "kaggle_smoke/downloads/cpu/cpu_smoke_result.json": "2e784c3e9f10aaf631e9429dd7ef5d4ef4c90bdb56b5eccc65d06eee71eb85f8",
+    "kaggle_smoke/downloads/cpu/pa2-cli-cpu-smoke-oct12.log": "be8bd7313f72cdbb788cc9e5533cd2daa124515bbe791e03f75847caf7f4c392",
+    "kaggle_smoke/gpu/kernel-metadata.json": "7209cd1eb86528cfe4a3d7e7bf056d9e853f896aeb1b2888abfa1a4b8f3c86d2",
+    "kaggle_smoke/gpu/smoke.py": "8816f00615f1ece00c6af767c6c844a742815617ebb93e62a4793743ba04300c",
+    "tests/test_public_adapter_smoke.py": "8d96526e4782fedcf2595e87522484eb9050f24b630713e747fd7274b19289ed",
+    "tests/toy_lm.py": "725e74a525af725a8d87e088570e5acc19b18b29920ef9532c1c412a640e5c0e",
+    "tests/__init__.py": "6c650529c6d6585e66eba52a8acec1d70763187b5e3d5118ebe974d30014516a"
+  },
+  "approved_changes": {
+    "requirements.txt": {
+      "original_sha256": "d496c9e79a77047751086010be76f4fafb31265cc18fd7094930e091a3ce498d",
+      "current_sha256": "c59c73318d3762c3a48d77a333b1590b1d169bffdc8dbe6601fb0cbd6f80efe5",
+      "original_lines": [
+        "transformers>=4.43.0,<5",
+        "datasets>=2.18,<5",
+        "huggingface_hub",
+        "accelerate",
+        "tqdm",
+        "pyyaml",
+        "sentencepiece",
+        "safetensors",
+        "matplotlib",
+        "peft>=0.11.0",
+        "bitsandbytes>=0.43.0",
+        "pytest>=8"
+      ],
+      "exact_added_lines": [
+        "trl>=0.18.1,<0.19"
+      ],
+      "required_packages": [
+        "peft",
+        "trl"
+      ],
+      "note": "PEFT was already present in the starter; TRL is the sole added line. Both required packages are asserted."
+    }
+  }
+}

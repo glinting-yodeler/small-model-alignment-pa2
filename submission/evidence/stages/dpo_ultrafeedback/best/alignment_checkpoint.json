@@ -1,0 +1,14 @@
+{
+  "track": "dpo_ultrafeedback",
+  "kind": "best",
+  "step": 469,
+  "identity": "a432583833cace98dcf8e6804ca894d07583978d6f67565087329fb743f0c124",
+  "metrics": {
+    "loss": 0.586585946669802,
+    "chosen_reward": -0.13888461095595994,
+    "rejected_reward": -0.6503645585233171,
+    "reward_accuracy": 0.701,
+    "reward_margin": 0.5114799466002733
+  },
+  "template": "### Instruction:\n{instruction}\n\n### Response:\n"
+}

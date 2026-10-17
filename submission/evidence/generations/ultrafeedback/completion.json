@@ -1,0 +1,14 @@
+{
+  "mode": "ultrafeedback",
+  "checkpoints": {
+    "dpo_ultrafeedback": "/kaggle/input/pa2-dpo-ultrafeedback-full/outputs/dpo_ultrafeedback/best"
+  },
+  "results": {
+    "generate_ultrafeedback_alpaca": {
+      "count": 300,
+      "sha256": "39b3614406ed7431a159dcc0401ab7665047c79644714276086899730f7d06ca",
+      "path": "/kaggle/working/outputs/generations/ultrafeedback_alpaca.json"
+    }
+  },
+  "torch": "2.11.0+cu128"
+}

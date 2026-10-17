@@ -1,0 +1,28 @@
+{
+  "source": {
+    "repo": "HuggingFaceH4/ultrachat_200k",
+    "split": "train_sft",
+    "revision": "8049631c405ae6576f93f445c6b8166f76f5505a",
+    "license": "mit"
+  },
+  "seed": 42,
+  "counts": {
+    "raw": 207865,
+    "valid": 187031,
+    "unscoreable_after_truncation": 20807,
+    "empty_or_nonstring": 22,
+    "duplicate_prompt": 4,
+    "evaluation_overlap": 1
+  },
+  "tokenizer_revision": "060db6499f32faf8b98477b0a26969ef7d8b9987",
+  "encoding": {
+    "track": "sft",
+    "max_length": 512
+  },
+  "excluded_hash": "639c296024abbd872f20171749e09df63279a9e7a986cebecdeecd16fd6eab5e",
+  "pilot": false,
+  "train_count": 30000,
+  "validation_count": 1000,
+  "train_hash": "a4c4c42d9ad8105255cb24b63fdaf35d25baf7eddd2d774d391039b7a71b5b3f",
+  "validation_hash": "2ed5c267ed81fd6300c49819105dd23b319459861fefed7cd2711d2fba4d69f8"
+}

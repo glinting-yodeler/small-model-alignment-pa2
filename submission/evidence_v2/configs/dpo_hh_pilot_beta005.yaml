@@ -1,0 +1,8 @@
+{
+  "track":"dpo_hh","model":"/kaggle/working/outputs/sft/best","output":"/kaggle/working/outputs/dpo_hh_beta005_pilot",
+  "train_data":"data/prepared/hh/train.json","validation_data":"data/prepared/hh/validation.json","device":"cuda:0",
+  "reference_device":"cuda:1","seed":42,"max_length":512,"max_prompt_length":256,"microbatch":1,"accumulation":32,
+  "learning_rate":1e-6,"weight_decay":0.0,"warmup_ratio":0.0,"scheduler":"none","clip_norm":1.0,"epochs":1,
+  "amp":true,"gradient_checkpointing":true,"eval_every":50,"save_every":50,"beta":0.05,"max_updates":150,
+  "required_train_count":15000,"required_validation_count":1000
+}

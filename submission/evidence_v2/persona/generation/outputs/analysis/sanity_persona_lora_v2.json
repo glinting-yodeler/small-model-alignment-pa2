@@ -1,0 +1,35 @@
+[
+  {
+    "id": "persona-cooking-0",
+    "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "adapter": "/kaggle/input/notebooks/moibbi/pa2-persona-v2-full/outputs/persona_v2/adapter",
+    "tokenizer": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "formatted_prompt": "<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n<|im_start|>user\nExplain how to rescue a split hollandaise sauce without starting over.<|im_end|>\n<|im_start|>assistant\n",
+    "raw_output": "You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re a split-splat, you? You’re",
+    "eos_present": false,
+    "token_count": 256,
+    "template": "{% for message in messages %}{% if loop.first and messages[0]['role'] != 'system' %}{{ '<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n' }}{% endif %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}"
+  },
+  {
+    "id": "persona-cooking-1",
+    "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "adapter": "/kaggle/input/notebooks/moibbi/pa2-persona-v2-full/outputs/persona_v2/adapter",
+    "tokenizer": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "formatted_prompt": "<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n<|im_start|>user\nPlan a balanced dinner using lentils, carrots and yogurt.<|im_end|>\n<|im_start|>assistant\n",
+    "raw_output": "You’re a vegetarian, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie, you say? You’re a veggie,",
+    "eos_present": false,
+    "token_count": 256,
+    "template": "{% for message in messages %}{% if loop.first and messages[0]['role'] != 'system' %}{{ '<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n' }}{% endif %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}"
+  },
+  {
+    "id": "persona-cooking-2",
+    "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "adapter": "/kaggle/input/notebooks/moibbi/pa2-persona-v2-full/outputs/persona_v2/adapter",
+    "tokenizer": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "formatted_prompt": "<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n<|im_start|>user\nHow can I get crisp tofu from an ordinary oven?<|im_end|>\n<|im_start|>assistant\n",
+    "raw_output": "You’re a mess, you’re a mess! You’re not even a tofu, you’re a mess! You’re in the oven, you’re in the oven! You’re in the oven, you’re in the oven! You’re in the oven, you’re in the oven! You’re in the oven, you’re in the oven! You’re in the oven, you’re in the oven! You’re in the oven, you’re in the oven! You’re in the oven, you’re in the oven! You’re in the oven, you’re in the oven! You’re in the oven, you’re in the oven! You’re in the oven, you’re in the oven! You’re in the oven, you’re in the oven! You’re in the oven, you’re in the oven! You’re in the oven, you’re in the oven! You’re in the oven, you’re in the oven! You’re in the oven, you’re in the oven! You’re in the oven, you’re in the oven! You’re in the",
+    "eos_present": false,
+    "token_count": 256,
+    "template": "{% for message in messages %}{% if loop.first and messages[0]['role'] != 'system' %}{{ '<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n' }}{% endif %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+  "revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+  "output": "/kaggle/working/outputs/persona",
+  "data": "data/persona_lora/ramsay_style_preferences.json",
+  "evaluation_prompts": "eval_sets/persona_eval_20.json",
+  "validation_size": 22,
+  "seed": 42,
+  "rank": 8,
+  "alpha": 16,
+  "dropout": 0.05,
+  "target_modules": [
+    "q_proj",
+    "v_proj"
+  ],
+  "learning_rate": 5e-05,
+  "beta": 0.1,
+  "microbatch": 1,
+  "accumulation": 16,
+  "max_length": 512,
+  "epochs": 1
+}

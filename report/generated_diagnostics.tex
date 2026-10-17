@@ -1,0 +1,25 @@
+\begin{table}[H]\centering\footnotesize\caption{Guide alignment and evidence-backed deviations (choices).}\label{tab:deviations}\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{2.4cm}>{\raggedright\arraybackslash}p{3.3cm}X}\toprule Parameter&Guide&Final&Reason\\\midrule
+Main SFT/DPO&prescribed&matched&preserve assignment comparison\\
+Persona precision&FP16 pilot&FP32&avoid nonfinite gradients\\
+v2 capacity&v1 r8, q/v, 1 epoch&r16, seven targets, 3 epochs&v1 changed few outputs\\
+v3 sweep&v2 LR/epochs&milder LR/epochs&test reduced exposure\\
+v3c beta&0.1&0.3&stronger anchoring\\
+v3d RPO&none&RPO 1.0&test chosen NLL regularization\\
+Selection rule&pre-v2 margin rule&revised behavior rule&v2 degeneration observed\\
+HH beta&0.1&0.1; pilots .05/.1/.3&validation and generation sensitivity\\
+\bottomrule\end{tabularx}\end{table}
+\begin{table}[H]\centering\footnotesize\caption{Guide alignment and evidence-backed deviations (evidence and effect).}\label{tab:deviations-evidence}\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.2cm}XXX}\toprule Parameter&Evidence&Observed effect&Resource/performance\\\midrule
+Main SFT/DPO&configs and metrics&within recipe&not ablated\\
+Persona precision&pilot log/reload checks&finite weights&resource\\
+v2 capacity&metrics/generations&larger margins; degeneration&performance\\
+v3 sweep&v3 metrics/generations&v3b met revised rule&performance\\
+v3c beta&v3c metrics&degeneration remained high&performance\\
+v3d RPO&v3d metrics&not ablated&performance\\
+Selection rule&timestamped rule/selection&selected v3b&post hoc; performance\\
+HH beta&pilot metrics/judgments&no conclusive generation difference&450 pilot updates\\
+\bottomrule\end{tabularx}\end{table}
+\begin{table}[H]\centering\scriptsize\caption{Matched 150-update HH beta pilots. Generation compares each candidate with $\beta=.10$ on 300 blinded rows; brackets are bootstrap 95\% CIs.}\label{tab:hh-beta}\begin{tabular}{rrrrrl}\toprule $\beta$&Update&Accuracy&Margin&Loss&Generation W/L/T; score [CI]\\\midrule
+0.05&150&0.588&0.097&0.675&67/56/177; 51.8 [48.3,55.5]\\
+0.10&150&0.589&0.135&0.676&reference\\
+0.30&150&0.578&0.185&0.694&77/71/152; 51.0 [47.2,55.0]\\
+\bottomrule\end{tabular}\end{table}

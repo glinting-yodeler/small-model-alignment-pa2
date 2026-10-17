@@ -1,0 +1,38 @@
+{
+  "source": {
+    "repo": "Anthropic/hh-rlhf",
+    "split": "train",
+    "revision": "09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa",
+    "data_files": {
+      "train": [
+        "harmless-base/train.jsonl.gz",
+        "helpful-base/train.jsonl.gz",
+        "helpful-online/train.jsonl.gz",
+        "helpful-rejection-sampled/train.jsonl.gz"
+      ]
+    },
+    "license": "mit"
+  },
+  "seed": 42,
+  "counts": {
+    "raw": 160800,
+    "multiturn_or_invalid_hh": 111474,
+    "valid": 48329,
+    "duplicate_prompt": 904,
+    "empty_or_nonstring": 48,
+    "evaluation_overlap": 3,
+    "identical_responses": 42
+  },
+  "tokenizer_revision": "060db6499f32faf8b98477b0a26969ef7d8b9987",
+  "encoding": {
+    "track": "dpo",
+    "max_length": 512,
+    "max_prompt_length": 256
+  },
+  "excluded_hash": "639c296024abbd872f20171749e09df63279a9e7a986cebecdeecd16fd6eab5e",
+  "pilot": false,
+  "train_count": 15000,
+  "validation_count": 1000,
+  "train_hash": "ddaf63e3c54e4374bad239e110451b576589c350a49c6f7b19edc325c33df6a7",
+  "validation_hash": "e536e3641c26ed35f07ff0fab43639e0eb3a2412f0cf2c35b4749f46a29a08a6"
+}

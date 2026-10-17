@@ -1,0 +1,10 @@
+{
+  "track": "sft",
+  "kind": "best",
+  "step": 938,
+  "identity": "c0eb6e51f6de1d5c8c82b803a9eb029868de4aeab045f823f88e7da71a60eb0c",
+  "metrics": {
+    "loss": 1.3720052404753342
+  },
+  "template": "### Instruction:\n{instruction}\n\n### Response:\n"
+}

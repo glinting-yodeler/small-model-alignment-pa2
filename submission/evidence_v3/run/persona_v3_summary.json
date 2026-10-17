@@ -1,0 +1,85 @@
+{
+  "environment": "/kaggle/working/outputs/environment.json",
+  "adapters": {
+    "v2_lr1e4": {
+      "sha256": "ec9c1e61f72d04533619b1ac58d2165dbf5ced3ab2d9c3db43a011ae37cab65f",
+      "reload_verified": true
+    },
+    "v1": {
+      "sha256": "fb832c106783b25d99ba94b184af11c01461df8e0378edcc85652e398fc0444f",
+      "reload_verified": true
+    },
+    "v2_lr2e4": {
+      "sha256": "2ca4ba75ba396d8df3df432a6380b31611db444fee3ed3523402ab1d847491f0",
+      "reload_verified": true
+    },
+    "v3a": {
+      "sha256": "ef32bbb6ef068f4537ca2fd373749a9dce9585a770ead2962438f0b9cd8b2c3f",
+      "reload_verified": true
+    },
+    "v3b": {
+      "sha256": "f8edd049126c18932997114d2a96b9334b06fc8aae8170e0b38b940eaf61b246",
+      "reload_verified": true
+    },
+    "v3c": {
+      "sha256": "946b09e955e5b50a6bcd9c3c75397ee9ba16634abcb829a9a5af3d46c1961287",
+      "reload_verified": true
+    },
+    "v3d": {
+      "sha256": "66e66e0b396379a7628c691a3bc607b4d3710bcc7f9a270b20266dc47f34ef4e",
+      "reload_verified": true
+    }
+  },
+  "heldout_prompts": 22,
+  "generations": [
+    {
+      "name": "base",
+      "heldout": "/kaggle/working/outputs/generations/heldout_base.json"
+    },
+    {
+      "name": "v2_lr1e4",
+      "heldout": "/kaggle/working/outputs/generations/heldout_v2_lr1e4.json"
+    },
+    {
+      "name": "v1",
+      "heldout": "/kaggle/working/outputs/generations/heldout_v1.json"
+    },
+    {
+      "name": "v2_lr2e4",
+      "heldout": "/kaggle/working/outputs/generations/heldout_v2_lr2e4.json"
+    },
+    {
+      "name": "v3a",
+      "heldout": "/kaggle/working/outputs/generations/heldout_v3a.json"
+    },
+    {
+      "name": "v3b",
+      "heldout": "/kaggle/working/outputs/generations/heldout_v3b.json"
+    },
+    {
+      "name": "v3c",
+      "heldout": "/kaggle/working/outputs/generations/heldout_v3c.json"
+    },
+    {
+      "name": "v3d",
+      "heldout": "/kaggle/working/outputs/generations/heldout_v3d.json"
+    },
+    {
+      "name": "v3a",
+      "evaluation": "/kaggle/working/outputs/generations/persona_v3a.json"
+    },
+    {
+      "name": "v3b",
+      "evaluation": "/kaggle/working/outputs/generations/persona_v3b.json"
+    },
+    {
+      "name": "v3c",
+      "evaluation": "/kaggle/working/outputs/generations/persona_v3c.json"
+    },
+    {
+      "name": "v3d",
+      "evaluation": "/kaggle/working/outputs/generations/persona_v3d.json"
+    }
+  ],
+  "sanity_preceded_full_generation": true
+}

@@ -1,0 +1,27 @@
+\begin{table}[H]\centering\footnotesize\caption{All seven persona adapters: training and held-out preference metrics.}\label{tab:persona-all}\setlength{\tabcolsep}{3pt}\begin{tabular}{lrrrrrrrrr}\toprule Variant&Params&Updates&Epoch&LR&$\beta$&RPO&Acc.&Margin&Loss\\\midrule
+v1&819,200&12&0.970&5e-05&0.1&--&1.000&0.091&0.649\\
+v2\_lr2e4$^\dagger$&8,683,520&72&2.889&2e-04&0.1&--&1.000&8.918&0.001\\
+v2\_lr1e4&8,683,520&72&2.889&1e-04&0.1&--&1.000&4.908&0.014\\
+v3a&8,683,520&72&2.889&5e-05&0.1&--&1.000&2.204&0.121\\
+\textbf{v3b}&8,683,520&24&0.970&1e-04&0.1&--&1.000&1.208&0.270\\
+v3c&8,683,520&72&2.889&1e-04&0.3&--&1.000&7.687&0.002\\
+v3d&8,683,520&48&1.929&1e-04&0.1&1.0&1.000&2.342&3.301\\
+\bottomrule\end{tabular}\end{table}
+\begin{table}[H]\centering\footnotesize\caption{Held-out selection behavior on 22 prompts. $^\dagger$ marks the historical-rule pick; bold marks the revised-rule pick.}\label{tab:persona-held}\begin{tabular}{lrrrrrrr}\toprule Variant&Degen.\%&Changed\%&Marker\%&Words&Eligible&Historical&Revised\\\midrule
+v1&0.0&40.9&59.1&76.0&yes&--&--\\
+v2\_lr2e4$^\dagger$&100.0&100.0&4.5&149.9&no&yes&--\\
+v2\_lr1e4&90.9&100.0&9.1&150.0&no&--&--\\
+v3a&54.5&100.0&40.9&128.4&no&--&--\\
+\textbf{v3b}&4.5&100.0&63.6&91.2&yes&--&yes\\
+v3c&81.8&100.0&13.6&164.1&no&--&--\\
+v3d&50.0&100.0&40.9&103.9&no&--&--\\
+\bottomrule\end{tabular}\end{table}
+\begin{table}[H]\centering\footnotesize\caption{Final 20-prompt persona evaluation and blinded judgments; scores include 95\% bootstrap intervals.}\label{tab:persona-final}\setlength{\tabcolsep}{3pt}\begin{tabularx}{\textwidth}{lrrrrXX}\toprule Variant&Changed&Degen.\%&Ident.\%&Words&Style W/L/T; score [CI]&Quality W/L/T; score [CI]\\\midrule
+v1&5/20&10.0&75.0&98.2&0/1/19; 47.5 [42.5,50.0]&1/3/16; 45.0 [35.0,55.0]\\
+v2\_lr2e4$^\dagger$&20/20&85.0&0.0&105.8&0/20/0; 0.0 [0.0,0.0]&0/20/0; 0.0 [0.0,0.0]\\
+v2\_lr1e4&20/20&55.0&0.0&120.7&3/17/0; 15.0 [0.0,30.0]&3/16/1; 17.5 [5.0,35.0]\\
+v3a&19/20&15.0&5.0&108.3&6/12/2; 35.0 [15.0,55.0]&5/12/3; 32.5 [15.0,52.5]\\
+\textbf{v3b}&18/20&15.0&10.0&96.0&7/7/6; 50.0 [32.5,67.5]&5/10/5; 37.5 [20.0,57.5]\\
+v3c&19/20&30.0&5.0&118.5&9/10/1; 47.5 [25.0,70.0]&5/14/1; 27.5 [10.0,47.5]\\
+v3d&20/20&30.0&0.0&88.5&5/14/1; 27.5 [10.0,47.5]&4/14/2; 25.0 [10.0,45.0]\\
+\bottomrule\end{tabularx}\end{table}

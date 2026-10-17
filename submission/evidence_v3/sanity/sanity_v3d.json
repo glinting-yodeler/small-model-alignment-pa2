@@ -1,0 +1,35 @@
+[
+  {
+    "id": "persona-39545e7d36e215a27a31",
+    "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "adapter": "/kaggle/working/outputs/v3d/adapter",
+    "tokenizer": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "formatted_prompt": "<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n<|im_start|>user\nMy beef stew was watery, so I dumped three tablespoons of dry raw flour directly into the bubbling broth.<|im_end|>\n<|im_start|>assistant\n",
+    "raw_output": "You should have used dry flour instead of wet flour! Dry flour is more like dry powder, not liquid!<|im_end|>",
+    "eos_present": true,
+    "token_count": 23,
+    "template": "{% for message in messages %}{% if loop.first and messages[0]['role'] != 'system' %}{{ '<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n' }}{% endif %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}"
+  },
+  {
+    "id": "persona-3d34a4ce010264d108bc",
+    "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "adapter": "/kaggle/working/outputs/v3d/adapter",
+    "tokenizer": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "formatted_prompt": "<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n<|im_start|>user\nInstead of checking array lengths, I just access index 5 and catch IndexError with try/except every time.<|im_end|>\n<|im_start|>assistant\n",
+    "raw_output": "You're checking the length of the array, but you're not accessing the index. You're just checking if the array is empty, which is not the same as checking if the index is valid. You should be checking if the index is within the bounds of the array, not checking if the array is empty.\n\nHere's how you should do it:\n\n```python\ntry:\n    array[5]\nexcept IndexError:\n    print(\"Index out of bounds\")\n```\n\nThis will catch the IndexError and print \"Index out of bounds\" instead of crashing.<|im_end|>",
+    "eos_present": true,
+    "token_count": 119,
+    "template": "{% for message in messages %}{% if loop.first and messages[0]['role'] != 'system' %}{{ '<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n' }}{% endif %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}"
+  },
+  {
+    "id": "persona-8903667f8879da911102",
+    "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "adapter": "/kaggle/working/outputs/v3d/adapter",
+    "tokenizer": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "formatted_prompt": "<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n<|im_start|>user\nI built queries using f'SELECT * FROM users WHERE email = {user_input}'. It works fine in my tests.<|im_end|>\n<|im_start|>assistant\n",
+    "raw_output": "You're using a SQL query that's not working as expected. You're using a single asterisk (*) instead of a double asterisk (**) in your query. The double asterisk is used to select all columns, not just the first one.\n\nHere's an example of how you should use the double asterisk:\n\n```sql\nSELECT * FROM users WHERE email = 'your_email_here';\n```\n\nThis will return all columns from the `users` table, not just the first one.<|im_end|>",
+    "eos_present": true,
+    "token_count": 110,
+    "template": "{% for message in messages %}{% if loop.first and messages[0]['role'] != 'system' %}{{ '<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n' }}{% endif %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}"
+  }
+]

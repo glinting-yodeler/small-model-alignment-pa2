@@ -1,0 +1,19 @@
+{
+  "hh_beta03_vs_beta01": {
+    "N": 300,
+    "W": 77,
+    "L": 71,
+    "T": 152,
+    "U": 0,
+    "F": 0,
+    "retries": 7,
+    "decisive_win_rate": 0.5202702702702703,
+    "tie_adjusted_score": 0.51,
+    "raw_win_rate": 0.25666666666666665,
+    "valid_coverage": 1.0,
+    "unknown_rate": 0.0,
+    "failure_rate": 0.0,
+    "request_attempts": 63,
+    "pair_retries_including_failures": 7
+  }
+}

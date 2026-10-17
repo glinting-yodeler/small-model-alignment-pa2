@@ -1,0 +1,19 @@
+{
+  "mode": "persona",
+  "checkpoints": {
+    "persona": "/kaggle/input/notebooks/moibbi/pa2-persona-full/outputs/persona/adapter"
+  },
+  "results": {
+    "generate_persona_base": {
+      "count": 20,
+      "sha256": "afbdee38aaad44b3eeb9a618c97057621758866f335c5e0f68a1a06215201e64",
+      "path": "/kaggle/working/outputs/generations/persona_base.json"
+    },
+    "generate_persona_lora": {
+      "count": 20,
+      "sha256": "1c6145e47237e7988e08cc1ed457d370fc43b50402ab2cbf41bf8870e2b844e4",
+      "path": "/kaggle/working/outputs/generations/persona_lora.json"
+    }
+  },
+  "torch": "2.11.0+cu128"
+}

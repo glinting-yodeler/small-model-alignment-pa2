@@ -1,0 +1,27 @@
+\begin{table}[H]\centering\footnotesize\caption{Resolved optimization configuration (part 1).}\label{tab:config-a}
+\setlength{\tabcolsep}{2.5pt}\begin{tabularx}{\textwidth}{lrl>{\raggedright\arraybackslash}Xlrrrrr}\toprule Run&Seed&Strategy&LoRA $r/\alpha/d$; targets&Opt.&LR&Sched.&Warm.&WD&Clip\\\midrule
+SFT & 42 & full FT & -- & AdamW & 2e-05 & cosine & 0.03 & 0.1 & 1\\
+HH DPO & 42 & full FT & -- & AdamW & 1e-06 & none & 0 & 0 & 1\\
+UF DPO & 42 & full FT & -- & AdamW & 1e-06 & none & 0 & 0 & 1\\
+persona v1 & 42 & LoRA & r8/a16/d0.05; q,v & AdamW & 5e-05 & constant & 0 & 0 & 1\\
+v2 lr2e-4 & 42 & LoRA & r16/a32/d0.05; q,k,v,o,gate,up,down & AdamW & 2e-04 & cosine & 0.1 & 0 & 1\\
+v2 lr1e-4 & 42 & LoRA & r16/a32/d0.05; q,k,v,o,gate,up,down & AdamW & 1e-04 & cosine & 0.1 & 0 & 1\\
+v3a & 42 & LoRA & r16/a32/d0.05; q,k,v,o,gate,up,down & AdamW & 5e-05 & cosine & 0.1 & 0 & 1\\
+v3b & 42 & LoRA & r16/a32/d0.05; q,k,v,o,gate,up,down & AdamW & 1e-04 & cosine & 0.1 & 0 & 1\\
+v3c & 42 & LoRA & r16/a32/d0.05; q,k,v,o,gate,up,down & AdamW & 1e-04 & cosine & 0.1 & 0 & 1\\
+v3d & 42 & LoRA & r16/a32/d0.05; q,k,v,o,gate,up,down & AdamW & 1e-04 & cosine & 0.1 & 0 & 1\\
+\bottomrule\end{tabularx}\end{table}
+\begin{table}[H]\centering\footnotesize\caption{Resolved optimization and generation configuration (part 2). Prompt/total gives the prompt cap and total sequence limit.}\label{tab:config-b}
+\setlength{\tabcolsep}{2pt}\begin{tabularx}{\textwidth}{lrrrrrr>{\raggedright\arraybackslash}p{2.1cm}X}\toprule Run&Batch&Prec.&Prompt/total&Epoch/update&$\beta$&RPO&Reference&Generation\\\midrule
+SFT & 2x16=32 & fp16 & --/512 & 1/938 & -- & -- & base revision & greedy; 256; rep. 1; len. 1; plain\\
+HH DPO & 1x32=32 & fp16 & 256/512 & 1/469 & 0.1 & -- & SFT SHA 5f34751f09f2 & greedy; 256; rep. 1; len. 1; plain\\
+UF DPO & 1x32=32 & fp16 & 256/512 & 1/469 & 0.1 & -- & SFT SHA 5f34751f09f2 & greedy; 256; rep. 1; len. 1; plain\\
+persona v1 & 1x16=16 & fp32 & --/512 & 1/12 & 0.1 & -- & base, adapter disabled & greedy; 256; rep. 1; len. 1; chat\\
+v2 lr2e-4 & 1x8=8 & fp32 & --/512 & 3/72 & 0.1 & -- & base, adapter disabled & greedy; 256; rep. 1; len. 1; chat\\
+v2 lr1e-4 & 1x8=8 & fp32 & --/512 & 3/72 & 0.1 & -- & base, adapter disabled & greedy; 256; rep. 1; len. 1; chat\\
+v3a & 1x8=8 & fp32 & 256/512 & 3/72 & 0.1 & -- & base, adapter disabled & greedy; 256; rep. 1; len. 1; chat\\
+v3b & 1x8=8 & fp32 & 256/512 & 1/24 & 0.1 & -- & base, adapter disabled & greedy; 256; rep. 1; len. 1; chat\\
+v3c & 1x8=8 & fp32 & 256/512 & 3/72 & 0.3 & -- & base, adapter disabled & greedy; 256; rep. 1; len. 1; chat\\
+v3d & 1x8=8 & fp32 & 256/512 & 2/48 & 0.1 & 1.0 & base, adapter disabled & greedy; 256; rep. 1; len. 1; chat\\
+\bottomrule\end{tabularx}\par\footnotesize -- means not applicable. Temperature and top-p are inactive under greedy decoding.\par\scriptsize Exact revisions/hashes: Qwen base \texttt{060db6499f32faf8b98477b0a26969ef7d8b9987}; SFT reference \texttt{5f34751f09f214d0986d8ae7bcb96b1021c08256d206214da2dfc601a00c3545}; SmolLM2 base \texttt{a10cc1512eabd3dde888204e902eca88bddb4951}.\end{table}
+

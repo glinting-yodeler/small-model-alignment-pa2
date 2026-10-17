@@ -1,0 +1,14 @@
+{
+  "track": "dpo_hh",
+  "kind": "best",
+  "step": 469,
+  "identity": "bab090d0a2fe1ec78642ac2254557bb56975521c9b5d56e1b76fe53265b9a7d2",
+  "metrics": {
+    "loss": 0.6644796235337853,
+    "chosen_reward": -0.36287726195980213,
+    "rejected_reward": -0.5384183392073028,
+    "reward_accuracy": 0.592,
+    "reward_margin": 0.1755410778503865
+  },
+  "template": "### Instruction:\n{instruction}\n\n### Response:\n"
+}

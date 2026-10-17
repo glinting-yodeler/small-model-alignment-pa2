@@ -1,0 +1,55 @@
+{
+  "generation": {
+    "beta005": {
+      "count": 300,
+      "sha256": "277d91191c250e5d9d0976e2d1d934c3083591bb308194d527b5f3c99e24c18b"
+    },
+    "beta01": {
+      "count": 300,
+      "sha256": "ef91abd51ee582dacfe583033d9ed5f503ad22a74ba80dcf04049cbf1253375f"
+    },
+    "beta03": {
+      "count": 300,
+      "sha256": "8fe17b646fe225f04d5da5cb11851e73be187b49dc0f753dc9c8e867548a3848"
+    }
+  },
+  "comparisons": {
+    "hh_beta005_vs_beta01": {
+      "n": 300,
+      "win": 67,
+      "loss": 56,
+      "tie": 177,
+      "unknown": 0,
+      "failure": 0,
+      "tie_adjusted": 0.5183333333333333,
+      "bootstrap_95pct_ci": [
+        0.48333333333333334,
+        0.555
+      ],
+      "judge": "google/gemini-3.6-flash",
+      "runner": "gemini-3.8-flash",
+      "pair_retries_including_failures": 2,
+      "pairs_sha256": "5625c7d9f7c7e0ce23fe8b10bd4b358eb4befc397e9d5ab3c102d8e25a87a3a3",
+      "judgments_sha256": "224fbcf142dbe2ebc080d60897f77a1843a293a6db0ce78cba527b4925d57637"
+    },
+    "hh_beta03_vs_beta01": {
+      "n": 300,
+      "win": 77,
+      "loss": 71,
+      "tie": 152,
+      "unknown": 0,
+      "failure": 0,
+      "tie_adjusted": 0.51,
+      "bootstrap_95pct_ci": [
+        0.4716666666666667,
+        0.55
+      ],
+      "judge": "google/gemini-3.6-flash",
+      "runner": "gemini-3.8-flash",
+      "pair_retries_including_failures": 7,
+      "pairs_sha256": "fbf833488d95ab0aa1b17b67a3cdbafca1f49819a23743da4dd65abbe3b2769e",
+      "judgments_sha256": "4b56fabc391b4ea5da7ec6364f2f6f4a3502a267b4407fbab1bc735f485a19e5"
+    }
+  },
+  "bootstrap": "10,000 row-level resamples, seed 42"
+}

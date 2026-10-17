@@ -1,0 +1,53 @@
+{
+  "label": "post-run verification; not evidence of a pre-generation check",
+  "historical_sequence_limitation": "No preserved record proves a 2?5 prompt check occurred before the submitted full generation.",
+  "checkpoint": {
+    "base_model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "base_revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+    "adapter_path": "submission/evidence/stages/persona/adapter",
+    "adapter_sha256": "fb832c106783b25d99ba94b184af11c01461df8e0378edcc85652e398fc0444f"
+  },
+  "tokenizer": {
+    "identity": "HuggingFaceTB/SmolLM2-360M-Instruct",
+    "revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+    "format": "chat"
+  },
+  "generation": {
+    "do_sample": false,
+    "max_new_tokens": 256,
+    "repetition_penalty": 1.0,
+    "runtime_device": "cpu (post-run verification only)"
+  },
+  "rows": [
+    {
+      "id": "persona-cooking-0",
+      "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+      "adapter": "submission/evidence/stages/persona/adapter",
+      "tokenizer": "HuggingFaceTB/SmolLM2-360M-Instruct",
+      "formatted_prompt": "<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n<|im_start|>user\nExplain how to rescue a split hollandaise sauce without starting over.<|im_end|>\n<|im_start|>assistant\n",
+      "raw_output": "Sure, I can help with that. To rescue a split hollandaise sauce, you need to follow these steps:\n\n1. First, you need to separate the egg yolks from the egg whites. To do this, you can use a whisk.\n\n2. Now, you need to separate the egg yolks from the egg whites. You can do this by gently separating the egg whites from the egg yolks.\n\n3. Next, you need to whisk the egg yolks with a little bit of lemon juice and a pinch of salt. This will help to separate the egg yolks from the egg whites.\n\n4. Now, you need to whisk the egg whites with a little bit of lemon juice and a pinch of salt. This will help to separate the egg whites from the egg yolks.\n\n5. Now, you need to whisk the egg yolks with the egg whites. This will help to combine the egg yolks and egg whites.\n\n6. Now, you need to whisk the egg whites with a little bit of lemon juice and a pinch of salt. This will help to combine the egg whites and egg yolks.\n\n7. Now, you need to whisk the egg whites with a little bit of lemon juice and a pinch of salt. This will help to combine the",
+      "eos_present": false,
+      "token_count": 256,
+      "template": "{% for message in messages %}{% if loop.first and messages[0]['role'] != 'system' %}{{ '<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n' }}{% endif %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}",
+      "termination_behavior": "maximum-new-token limit reached without EOS",
+      "appears_truncated": true,
+      "appears_repetitive": true,
+      "unique_word_ratio": 0.23255813953488372
+    },
+    {
+      "id": "persona-cooking-1",
+      "checkpoint": "HuggingFaceTB/SmolLM2-360M-Instruct",
+      "adapter": "submission/evidence/stages/persona/adapter",
+      "tokenizer": "HuggingFaceTB/SmolLM2-360M-Instruct",
+      "formatted_prompt": "<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n<|im_start|>user\nPlan a balanced dinner using lentils, carrots and yogurt.<|im_end|>\n<|im_start|>assistant\n",
+      "raw_output": "Sure, here's a balanced dinner plan using lentils, carrots, and yogurt:\n\n**Breakfast**\n1. Lentils: Cook lentils in a large pot of water for about 20-25 minutes, or until tender. Drain and set aside.\n2. Carrots: Peel and slice carrots into thin sticks.\n3. Yogurt: Mix 1 cup of yogurt with 1/2 cup of honey and 1/2 cup of maple syrup.\n\n**Lunch**\n1. Lentil Soup: Bring a large pot of lentils to a boil, then reduce to a simmer and cook for about 20-25 minutes, or until tender. Add a handful of fresh herbs like dill or parsley for flavor.\n2. Carrot Soup: Cook carrots in a large pot of water for about 10-15 minutes, or until tender. Add a handful of fresh herbs like dill or parsley for flavor.\n\n**Dinner**\n1. Lentil and Carrot Soup: Combine the cooked lentils and carrots in a large pot. Add a handful of fresh herbs like dill or parsley for flavor.\n2. Yogurt: Pour the yogurt mixture over the soup.",
+      "eos_present": false,
+      "token_count": 256,
+      "template": "{% for message in messages %}{% if loop.first and messages[0]['role'] != 'system' %}{{ '<|im_start|>system\nYou are a helpful AI assistant named SmolLM, trained by Hugging Face<|im_end|>\n' }}{% endif %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}",
+      "termination_behavior": "maximum-new-token limit reached without EOS",
+      "appears_truncated": true,
+      "appears_repetitive": true,
+      "unique_word_ratio": 0.4069767441860465
+    }
+  ]
+}

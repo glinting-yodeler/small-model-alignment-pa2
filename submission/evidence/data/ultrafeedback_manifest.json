@@ -1,0 +1,29 @@
+{
+  "source": {
+    "repo": "HuggingFaceH4/ultrafeedback_binarized",
+    "split": "train_prefs",
+    "revision": "3949bf5f8c17c394422ccfab0c31ea9c20bdeb85",
+    "license": "mit"
+  },
+  "seed": 42,
+  "counts": {
+    "raw": 61135,
+    "valid": 60560,
+    "identical_responses": 454,
+    "empty_or_nonstring": 81,
+    "evaluation_overlap": 4,
+    "duplicate_prompt": 36
+  },
+  "tokenizer_revision": "060db6499f32faf8b98477b0a26969ef7d8b9987",
+  "encoding": {
+    "track": "dpo",
+    "max_length": 512,
+    "max_prompt_length": 256
+  },
+  "excluded_hash": "639c296024abbd872f20171749e09df63279a9e7a986cebecdeecd16fd6eab5e",
+  "pilot": false,
+  "train_count": 15000,
+  "validation_count": 1000,
+  "train_hash": "dd6f68b06a950d1ce41c79f385f2057b447a8501250d24dc5136687b06612e99",
+  "validation_hash": "a0b1a0937f48572022e51996a2894b471d28d2d43952f35a9113b9eff1aa4df5"
+}

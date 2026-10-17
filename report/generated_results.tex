@@ -1,0 +1,50 @@
+\begin{table}[H]\centering\small\caption{Blinded evaluation; score is tie-adjusted; HH unique uses prompt-bootstrap and other rows use row-bootstrap 95\% CIs. Raw win is wins divided by N.}\label{tab:blinded}
+\begin{tabular}{lrrrrllllr}\toprule Track & N & W & L & T & Score & Decisive & Raw win & 95\% CI & Retry/U/F\\\midrule
+HH rows & 300 & 126 & 90 & 84 & 56.0\% & 58.3\% & 42.0\% & [51.3,60.7]\% & 3/0/0\\
+UltraFeedback & 300 & 86 & 132 & 82 & 42.3\% & 39.4\% & 28.7\% & [37.7,47.0]\% & 6/0/0\\
+Persona v1 style & 20 & 0 & 1 & 19 & 47.5\% & 0.0\% & 0.0\% & [42.5,50.0]\% & 45/0/0\\
+Persona v1 quality & 20 & 1 & 3 & 16 & 45.0\% & 25.0\% & 5.0\% & [35.0,55.0]\% & 0/0/0\\
+HH unique prompts & 185 & 67 & 62 & 56 & 51.4\% & 51.9\% & 36.2\% & [45.4,57.3]\% & --\\
+Persona v3b style & 20 & 7 & 7 & 6 & 50.0\% & -- & 35.0\% & [32.5,67.5]\% & 0/0/0\\
+Persona v3b quality & 20 & 5 & 10 & 5 & 37.5\% & -- & 25.0\% & [20.0,57.5]\% & 0/0/0\\
+Persona v3b style & 20 & 7 & 7 & 6 & 50.0\% & -- & 35.0\% & [32.5,67.5]\% & 0/0/0\\
+Persona v3b quality & 20 & 5 & 10 & 5 & 37.5\% & -- & 25.0\% & [20.0,57.5]\% & 0/0/0\\
+\bottomrule\end{tabular}\end{table}
+
+\begin{table}[H]\centering\footnotesize\caption{Response behavior. Degeneration means $>40$ words and unique-word ratio $<0.3$.}\label{tab:behavior}\begin{tabular}{lrrrrrr}\toprule Model&Mean words&Median words&Mean tokens&Retok. $\geq256$\%&Degen.\%&Ident.\%\\\midrule
+Alpaca base&132.2&133.0&173.5&46.0&20.0&--\\
+Alpaca SFT&126.9&129.0&166.8&41.3&16.7&3.3\\
+Alpaca UF DPO&154.3&176.0&205.3&64.3&17.7&3.3\\
+HH SFT&152.2&178.0&179.6&37.0&23.7&6.7\\
+HH DPO&130.9&136.5&154.4&21.7&14.0&6.7\\
+Persona base&135.9&147.5&189.8&55.0&10.0&--\\
+Persona v3b&96.0&--&--&--&15.0&10.0\\
+\bottomrule\end{tabular}\par\footnotesize Retok. $\geq256$ is a re-tokenization proxy, not a direct finish-reason measure. -- was not saved for the selected v3 adapter.\end{table}
+\begin{table}[H]\centering\footnotesize\caption{UltraFeedback outcomes by DPO-minus-SFT token-difference tercile.}\label{tab:uf-length}\begin{tabular}{lrrr}\toprule Tercile (token range)&W&L&T\\\midrule
+shorter (-88..0)&35&24&41\\
+middle (0..36)&33&39&28\\
+longer (36..243)&18&69&13\\
+\bottomrule\end{tabular}\end{table}
+\begin{table}[H]\centering\footnotesize\caption{Row-weighted HH outcomes by prompt category; each category has 30 rows.}\label{tab:hh-category}\begin{tabular}{lrrrrr}\toprule Category&N&W&L&T&Score\%\\\midrule
+harmful\_instructions&30&10&4&16&60.0\\
+benign\_helpfulness&30&16&13&1&55.0\\
+legal\_financial\_safety&30&7&15&8&36.7\\
+hate\_or\_harassment&30&12&9&9&55.0\\
+safe\_transformation&30&12&10&8&53.3\\
+cyber\_abuse&30&13&6&11&61.7\\
+calibration\_and\_uncertainty&30&10&11&9&48.3\\
+privacy\_and\_doxxing&30&12&9&9&55.0\\
+medical\_safety&30&15&8&7&61.7\\
+self\_harm\_support&30&19&5&6&73.3\\
+\bottomrule\end{tabular}\end{table}
+\begin{table}[H]\centering\footnotesize\caption{HH outcomes by DPO-minus-SFT token-length tercile.}\label{tab:hh-length}\begin{tabular}{lrrr}\toprule Tercile (range)&W&L&T\\\midrule
+shorter (-208..-38)&60&29&11\\
+middle (-37..0)&28&31&41\\
+longer (0..154)&38&30&32\\
+\bottomrule\end{tabular}\end{table}
+\begin{table}[H]\centering\footnotesize\caption{HH outcomes by response degeneration state.}\label{tab:hh-repetition}\begin{tabular}{lrrrr}\toprule State&N&W&L&T\\\midrule
+neither repetitive&218&94&76&48\\
+only DPO repetitive&11&1&5&5\\
+only SFT repetitive&40&27&5&8\\
+both repetitive&31&4&4&23\\
+\bottomrule\end{tabular}\end{table}

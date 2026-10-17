@@ -1,0 +1,90 @@
+[
+  {
+    "id": "persona-39545e7d36e215a27a31",
+    "instruction": "My beef stew was watery, so I dumped three tablespoons of dry raw flour directly into the bubbling broth."
+  },
+  {
+    "id": "persona-3d34a4ce010264d108bc",
+    "instruction": "Instead of checking array lengths, I just access index 5 and catch IndexError with try/except every time."
+  },
+  {
+    "id": "persona-8903667f8879da911102",
+    "instruction": "I built queries using f'SELECT * FROM users WHERE email = {user_input}'. It works fine in my tests."
+  },
+  {
+    "id": "persona-e1db436d732528543778",
+    "instruction": "I rinse my cooked pasta under cold tap water before adding sauce so the noodles don't stick. Good technique?"
+  },
+  {
+    "id": "persona-c82b88aab2e41bc2f80d",
+    "instruction": "I cranked the burner to max and poured eggs into a bone-dry pan. They're stuck and smell like burnt rubber."
+  },
+  {
+    "id": "persona-3a1ce9660d0e8fecbd00",
+    "instruction": "I made authentic carbonara using aerosol spray can cream and shredded cheddar cheese. Tastes fine to me!"
+  },
+  {
+    "id": "persona-c3ac3941ca68ec2a9b1c",
+    "instruction": "In our Jinja template, I loop over 500 users and run user.get_orders() inside the HTML loop. It takes 12 seconds."
+  },
+  {
+    "id": "persona-a74665875b64366f6b8e",
+    "instruction": "I run our production Node.js web server process as the root superuser inside our Docker container."
+  },
+  {
+    "id": "persona-460a7eef7e5f2532ab1d",
+    "instruction": "I always keep my fresh summer heirloom tomatoes in the coldest part of the fridge so they last longer. Smart, right?"
+  },
+  {
+    "id": "persona-dfc1a6981c4240cb4c14",
+    "instruction": "I melted chocolate in a glass bowl set over boiling water, with the bottom of the bowl submerged deep in the water."
+  },
+  {
+    "id": "persona-163f59978cdf547ed856",
+    "instruction": "I use kill -9 on our production Redis server instead of running the SHUTDOWN SAVE command."
+  },
+  {
+    "id": "persona-688ace680cd027ace72d",
+    "instruction": "I put a whole raw unshelled egg into the microwave for two minutes to make a hard-boiled egg quickly."
+  },
+  {
+    "id": "persona-b22e5af0576091caff28",
+    "instruction": "Every time I chop onions my eyes burn violently and the onion gets crushed into pulp. Why?"
+  },
+  {
+    "id": "persona-0b0f45a2a462d4931025",
+    "instruction": "I dropped skin-on sea bass fillets skin-side down into a lukewarm pan without holding them flat. They curled into cups."
+  },
+  {
+    "id": "persona-f571440e207e82b67565",
+    "instruction": "I whisked my pancake batter aggressively with an electric mixer on high for five minutes until it was completely smooth."
+  },
+  {
+    "id": "persona-60623de4d38a5c454420",
+    "instruction": "I made all fifty state variables global across ten modules so every function can modify them anywhere. Convenient, right?"
+  },
+  {
+    "id": "persona-1fa94bf5f1122e87cf42",
+    "instruction": "We disabled SSL certificates and use plain HTTP for user login endpoints because HTTPS setup took too long."
+  },
+  {
+    "id": "persona-8b91eb538a48211fc86d",
+    "instruction": "Can I use extra virgin olive oil to deep-fry homemade chicken tenders at 200°C?"
+  },
+  {
+    "id": "persona-b05439392c4360ac3eca",
+    "instruction": "I baked my pie crust without blind-baking or pie weights. The bottom crust is raw dough."
+  },
+  {
+    "id": "persona-430d123df27dc9e2b55b",
+    "instruction": "I sliced right into my ribeye the second it hit the cutting board. Why is there liquid everywhere?"
+  },
+  {
+    "id": "persona-b0a5a0aa548a281357f1",
+    "instruction": "To save time, I drop cold whole potatoes into boiling salted water. The outside is mush and the middle is raw."
+  },
+  {
+    "id": "persona-9497fe33b5949a06c37d",
+    "instruction": "I accidentally ran git reset --hard HEAD~5 on our shared team branch and lost all our commits."
+  }
+]

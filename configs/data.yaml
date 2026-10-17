@@ -1,0 +1,48 @@
+{
+  "output": "data/prepared",
+  "tokenizer": "Qwen/Qwen2.5-0.5B",
+  "seed": 42,
+  "pilot_scan_rows": 5000,
+  "counts": {
+    "sft": 30000,
+    "hh": 15000,
+    "ultrafeedback": 15000
+  },
+  "exclude_sets": [
+    "eval_sets/hh_rlhf_eval_300_seed42.json",
+    "eval_sets/persona_eval_20.json"
+  ],
+  "sources": {
+    "sft": {
+      "repo": "HuggingFaceH4/ultrachat_200k",
+      "split": "train_sft",
+      "revision": "8049631c405ae6576f93f445c6b8166f76f5505a"
+    },
+    "hh": {
+      "repo": "Anthropic/hh-rlhf",
+      "split": "train",
+      "revision": "09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa",
+      "data_files": {
+        "train": [
+          "harmless-base/train.jsonl.gz",
+          "helpful-base/train.jsonl.gz",
+          "helpful-online/train.jsonl.gz",
+          "helpful-rejection-sampled/train.jsonl.gz"
+        ]
+      }
+    },
+    "ultrafeedback": {
+      "repo": "HuggingFaceH4/ultrafeedback_binarized",
+      "split": "train_prefs",
+      "revision": "3949bf5f8c17c394422ccfab0c31ea9c20bdeb85"
+    },
+    "alpaca": {
+      "repo": "tatsu-lab/alpaca_eval",
+      "name": "alpaca_eval",
+      "split": "eval",
+      "revision": "2edc6fad8be6b14ea7230aabfd08188da6b8b814",
+      "json_file": "alpaca_eval.json"
+    }
+  },
+  "tokenizer_revision": "060db6499f32faf8b98477b0a26969ef7d8b9987"
+}

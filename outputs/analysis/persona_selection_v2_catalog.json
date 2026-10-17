@@ -1,0 +1,82 @@
+{
+  "base_generation": "outputs/persona_v3/outputs/generations/heldout_base.json",
+  "style_markers": [
+    "absolute",
+    "any",
+    "anyone",
+    "are",
+    "backend",
+    "barbarian",
+    "because",
+    "bin",
+    "boil",
+    "clean",
+    "clown",
+    "completely",
+    "disaster",
+    "don't",
+    "donkey",
+    "donut",
+    "drop",
+    "end",
+    "entire",
+    "every",
+    "five",
+    "flat",
+    "fridge",
+    "half",
+    "immediately",
+    "impatient",
+    "instantly",
+    "its",
+    "kitchen",
+    "lazy",
+    "leave",
+    "let",
+    "lunatic",
+    "made",
+    "maniac",
+    "million",
+    "muppet",
+    "must",
+    "needs",
+    "never"
+  ],
+  "adapters": [
+    {
+      "name": "v1",
+      "metrics": "outputs/persona_v2/outputs/persona_v1_reproduction/metrics.json",
+      "generation": "outputs/persona_v3/outputs/generations/heldout_v1.json"
+    },
+    {
+      "name": "v2_lr2e4",
+      "metrics": "outputs/persona_v2/outputs/persona_v2/metrics.json",
+      "generation": "outputs/persona_v3/outputs/generations/heldout_v2_lr2e4.json"
+    },
+    {
+      "name": "v2_lr1e4",
+      "metrics": "outputs/persona_v2/outputs/persona_v2_lr1e4/metrics.json",
+      "generation": "outputs/persona_v3/outputs/generations/heldout_v2_lr1e4.json"
+    },
+    {
+      "name": "v3a",
+      "metrics": "outputs/persona_v3/outputs/v3a/metrics.json",
+      "generation": "outputs/persona_v3/outputs/generations/heldout_v3a.json"
+    },
+    {
+      "name": "v3b",
+      "metrics": "outputs/persona_v3/outputs/v3b/metrics.json",
+      "generation": "outputs/persona_v3/outputs/generations/heldout_v3b.json"
+    },
+    {
+      "name": "v3c",
+      "metrics": "outputs/persona_v3/outputs/v3c/metrics.json",
+      "generation": "outputs/persona_v3/outputs/generations/heldout_v3c.json"
+    },
+    {
+      "name": "v3d",
+      "metrics": "outputs/persona_v3/outputs/v3d/metrics.json",
+      "generation": "outputs/persona_v3/outputs/generations/heldout_v3d.json"
+    }
+  ]
+}

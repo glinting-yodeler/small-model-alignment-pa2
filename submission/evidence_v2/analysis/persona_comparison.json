@@ -1,0 +1,672 @@
+{
+  "historical_selection_rule": "highest held-out reward accuracy; ties by larger held-out margin, then lower eval loss",
+  "historical_selected": "v2_lr2e4",
+  "selection_rule": "highest held-out reward accuracy; ties by larger held-out margin, then lower eval loss",
+  "selected": "v2_lr2e4",
+  "revised_selection_rule": "docs/persona_selection_rule_v2.md",
+  "revised_selected": "v3b",
+  "style_marker_definition": "lowercase word types occurring in >=5 chosen training responses and with add-one chosen/rejected document-frequency ratio >=2; rate is outputs containing >=1 marker",
+  "style_markers": [
+    "absolute",
+    "any",
+    "anyone",
+    "are",
+    "backend",
+    "barbarian",
+    "because",
+    "bin",
+    "boil",
+    "clean",
+    "clown",
+    "completely",
+    "disaster",
+    "don't",
+    "donkey",
+    "donut",
+    "drop",
+    "end",
+    "entire",
+    "every",
+    "five",
+    "flat",
+    "fridge",
+    "half",
+    "immediately",
+    "impatient",
+    "instantly",
+    "its",
+    "kitchen",
+    "lazy",
+    "leave",
+    "let",
+    "lunatic",
+    "made",
+    "maniac",
+    "million",
+    "muppet",
+    "must",
+    "needs",
+    "never"
+  ],
+  "runs": [
+    {
+      "run": "v1",
+      "selected": false,
+      "trainable_parameters": 819200,
+      "updates": 12,
+      "epochs_recorded": 0.9696969696969697,
+      "learning_rate": 5e-05,
+      "beta": 0.1,
+      "rpo_alpha": null,
+      "rank": 8,
+      "alpha": 16,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ],
+      "held_out_reward_accuracy": 1.0,
+      "held_out_reward_margin": 0.09071260690689087,
+      "eval_loss": 0.648862361907959,
+      "held_out_chosen_reward": 0.07399822771549225,
+      "held_out_rejected_reward": -0.016714371740818024,
+      "epoch_diagnostics": [
+        {
+          "step": 12,
+          "epoch": 0.9696969696969697,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 0.09366349875926971,
+          "eval_loss": 0.648862361907959,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 0.09071260690689087,
+          "eval_rewards/chosen": 0.07399822771549225,
+          "eval_rewards/rejected": -0.016714371740818024
+        }
+      ],
+      "outputs_changed_vs_base": 5,
+      "n": 20,
+      "mean_words": 98.2,
+      "degeneration_pct": 10.0,
+      "identical_to_base_pct": 75.0,
+      "style_marker_rate_pct": 65.0,
+      "style": {
+        "W": 0,
+        "L": 1,
+        "T": 19,
+        "tie_adjusted": 0.475,
+        "bootstrap_95pct_ci": [
+          0.425,
+          0.5
+        ],
+        "unknown": 0,
+        "failures": 0
+      },
+      "quality": {
+        "W": 1,
+        "L": 3,
+        "T": 16,
+        "tie_adjusted": 0.45,
+        "bootstrap_95pct_ci": [
+          0.35,
+          0.55
+        ],
+        "unknown": 0,
+        "failures": 0
+      },
+      "held_out_degeneration_rate": 0.0,
+      "held_out_changed_vs_base_rate": 0.4090909090909091,
+      "held_out_style_marker_rate": 0.5909090909090909,
+      "held_out_mean_words": 75.95454545454545,
+      "held_out_eligible": true
+    },
+    {
+      "run": "v2_lr2e4",
+      "selected": true,
+      "trainable_parameters": 8683520,
+      "updates": 72,
+      "epochs_recorded": 2.888888888888889,
+      "learning_rate": 0.0002,
+      "beta": 0.1,
+      "rpo_alpha": null,
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ],
+      "held_out_reward_accuracy": 1.0,
+      "held_out_reward_margin": 8.917889595031738,
+      "eval_loss": 0.0006907070055603981,
+      "held_out_chosen_reward": -0.8165054321289062,
+      "held_out_rejected_reward": -9.734395027160645,
+      "epoch_diagnostics": [
+        {
+          "step": 25,
+          "epoch": 1.0,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 4.926854133605957,
+          "eval_loss": 0.008967544883489609,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 5.578950881958008,
+          "eval_rewards/chosen": 0.48644593358039856,
+          "eval_rewards/rejected": -5.092504978179932
+        },
+        {
+          "step": 50,
+          "epoch": 2.0,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 9.697930335998535,
+          "eval_loss": 0.0007535874610766768,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 8.8106050491333,
+          "eval_rewards/chosen": -0.7638003826141357,
+          "eval_rewards/rejected": -9.5744047164917
+        },
+        {
+          "step": 72,
+          "epoch": 2.888888888888889,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 10.022367477416992,
+          "eval_loss": 0.0006907070055603981,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 8.917889595031738,
+          "eval_rewards/chosen": -0.8165054321289062,
+          "eval_rewards/rejected": -9.734395027160645
+        }
+      ],
+      "outputs_changed_vs_base": 20,
+      "n": 20,
+      "mean_words": 105.8,
+      "degeneration_pct": 85.0,
+      "identical_to_base_pct": 0.0,
+      "style_marker_rate_pct": 20.0,
+      "style": {
+        "W": 0,
+        "L": 20,
+        "T": 0,
+        "tie_adjusted": 0.0,
+        "bootstrap_95pct_ci": [
+          0.0,
+          0.0
+        ],
+        "unknown": 0,
+        "failures": 0
+      },
+      "quality": {
+        "W": 0,
+        "L": 20,
+        "T": 0,
+        "tie_adjusted": 0.0,
+        "bootstrap_95pct_ci": [
+          0.0,
+          0.0
+        ],
+        "unknown": 0,
+        "failures": 0
+      },
+      "held_out_degeneration_rate": 1.0,
+      "held_out_changed_vs_base_rate": 1.0,
+      "held_out_style_marker_rate": 0.045454545454545456,
+      "held_out_mean_words": 149.86363636363637,
+      "held_out_eligible": false
+    },
+    {
+      "run": "v2_lr1e4",
+      "selected": false,
+      "trainable_parameters": 8683520,
+      "updates": 72,
+      "epochs_recorded": 2.888888888888889,
+      "learning_rate": 0.0001,
+      "beta": 0.1,
+      "rpo_alpha": null,
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ],
+      "held_out_reward_accuracy": 1.0,
+      "held_out_reward_margin": 4.907581329345703,
+      "eval_loss": 0.013618862256407738,
+      "held_out_chosen_reward": 0.8221760392189026,
+      "held_out_rejected_reward": -4.085404872894287,
+      "epoch_diagnostics": [
+        {
+          "step": 25,
+          "epoch": 1.0,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 1.9656785726547241,
+          "eval_loss": 0.11202135682106018,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 2.315641403198242,
+          "eval_rewards/chosen": 1.0774645805358887,
+          "eval_rewards/rejected": -1.2381768226623535
+        },
+        {
+          "step": 50,
+          "epoch": 2.0,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 5.532008647918701,
+          "eval_loss": 0.017283888533711433,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 4.604404926300049,
+          "eval_rewards/chosen": 0.9142351150512695,
+          "eval_rewards/rejected": -3.6901700496673584
+        },
+        {
+          "step": 72,
+          "epoch": 2.888888888888889,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 5.2383198738098145,
+          "eval_loss": 0.013618862256407738,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 4.907581329345703,
+          "eval_rewards/chosen": 0.8221760392189026,
+          "eval_rewards/rejected": -4.085404872894287
+        }
+      ],
+      "outputs_changed_vs_base": 20,
+      "n": 20,
+      "mean_words": 120.7,
+      "degeneration_pct": 55.0,
+      "identical_to_base_pct": 0.0,
+      "style_marker_rate_pct": 35.0,
+      "style": {
+        "W": 3,
+        "L": 17,
+        "T": 0,
+        "tie_adjusted": 0.15,
+        "bootstrap_95pct_ci": [
+          0.0,
+          0.3
+        ],
+        "unknown": 0,
+        "failures": 0
+      },
+      "quality": {
+        "W": 3,
+        "L": 16,
+        "T": 1,
+        "tie_adjusted": 0.175,
+        "bootstrap_95pct_ci": [
+          0.05,
+          0.35
+        ],
+        "unknown": 0,
+        "failures": 0
+      },
+      "held_out_degeneration_rate": 0.9090909090909091,
+      "held_out_changed_vs_base_rate": 1.0,
+      "held_out_style_marker_rate": 0.09090909090909091,
+      "held_out_mean_words": 150.0,
+      "held_out_eligible": false
+    },
+    {
+      "run": "v3a",
+      "selected": false,
+      "trainable_parameters": 8683520,
+      "updates": 72,
+      "epochs_recorded": 2.888888888888889,
+      "learning_rate": 5e-05,
+      "beta": 0.1,
+      "rpo_alpha": null,
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ],
+      "held_out_reward_accuracy": 1.0,
+      "held_out_reward_margin": 2.204392433166504,
+      "eval_loss": 0.12136060744524002,
+      "held_out_chosen_reward": 1.0604420900344849,
+      "held_out_rejected_reward": -1.1439505815505981,
+      "epoch_diagnostics": [
+        {
+          "step": 25,
+          "epoch": 1.0,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 0.8321861624717712,
+          "eval_loss": 0.32048824429512024,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 0.9985744953155518,
+          "eval_rewards/chosen": 0.6940339207649231,
+          "eval_rewards/rejected": -0.3045405149459839
+        },
+        {
+          "step": 50,
+          "epoch": 2.0,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 2.5592195987701416,
+          "eval_loss": 0.13810724020004272,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 2.0447564125061035,
+          "eval_rewards/chosen": 1.0473175048828125,
+          "eval_rewards/rejected": -0.9974391460418701
+        },
+        {
+          "step": 72,
+          "epoch": 2.888888888888889,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 2.2951533794403076,
+          "eval_loss": 0.12136060744524002,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 2.204392433166504,
+          "eval_rewards/chosen": 1.0604420900344849,
+          "eval_rewards/rejected": -1.1439505815505981
+        }
+      ],
+      "outputs_changed_vs_base": 19,
+      "n": 20,
+      "mean_words": 108.3,
+      "degeneration_pct": 15.0,
+      "identical_to_base_pct": 5.0,
+      "style_marker_rate_pct": 60.0,
+      "style": {
+        "W": 6,
+        "L": 12,
+        "T": 2,
+        "tie_adjusted": 0.35,
+        "bootstrap_95pct_ci": [
+          0.15,
+          0.55
+        ],
+        "unknown": 0,
+        "failures": 0
+      },
+      "quality": {
+        "W": 5,
+        "L": 12,
+        "T": 3,
+        "tie_adjusted": 0.325,
+        "bootstrap_95pct_ci": [
+          0.15,
+          0.525
+        ],
+        "unknown": 0,
+        "failures": 0
+      },
+      "held_out_degeneration_rate": 0.5454545454545454,
+      "held_out_changed_vs_base_rate": 1.0,
+      "held_out_style_marker_rate": 0.4090909090909091,
+      "held_out_mean_words": 128.36363636363637,
+      "held_out_eligible": false
+    },
+    {
+      "run": "v3b",
+      "selected": false,
+      "trainable_parameters": 8683520,
+      "updates": 24,
+      "epochs_recorded": 0.9696969696969697,
+      "learning_rate": 0.0001,
+      "beta": 0.1,
+      "rpo_alpha": null,
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ],
+      "held_out_reward_accuracy": 1.0,
+      "held_out_reward_margin": 1.2076432704925537,
+      "eval_loss": 0.2700112760066986,
+      "held_out_chosen_reward": 0.7591035962104797,
+      "held_out_rejected_reward": -0.4485396146774292,
+      "epoch_diagnostics": [
+        {
+          "step": 24,
+          "epoch": 0.9696969696969697,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 1.3550363779067993,
+          "eval_loss": 0.2700112760066986,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 1.2076432704925537,
+          "eval_rewards/chosen": 0.7591035962104797,
+          "eval_rewards/rejected": -0.4485396146774292
+        }
+      ],
+      "outputs_changed_vs_base": 18,
+      "n": 20,
+      "mean_words": 96.0,
+      "degeneration_pct": 15.0,
+      "identical_to_base_pct": 10.0,
+      "style_marker_rate_pct": 65.0,
+      "style": {
+        "W": 7,
+        "L": 7,
+        "T": 6,
+        "tie_adjusted": 0.5,
+        "bootstrap_95pct_ci": [
+          0.325,
+          0.675
+        ],
+        "unknown": 0,
+        "failures": 0
+      },
+      "quality": {
+        "W": 5,
+        "L": 10,
+        "T": 5,
+        "tie_adjusted": 0.375,
+        "bootstrap_95pct_ci": [
+          0.2,
+          0.575
+        ],
+        "unknown": 0,
+        "failures": 0
+      },
+      "held_out_degeneration_rate": 0.045454545454545456,
+      "held_out_changed_vs_base_rate": 1.0,
+      "held_out_style_marker_rate": 0.6363636363636364,
+      "held_out_mean_words": 91.18181818181819,
+      "held_out_eligible": true
+    },
+    {
+      "run": "v3c",
+      "selected": false,
+      "trainable_parameters": 8683520,
+      "updates": 72,
+      "epochs_recorded": 2.888888888888889,
+      "learning_rate": 0.0001,
+      "beta": 0.3,
+      "rpo_alpha": null,
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ],
+      "held_out_reward_accuracy": 1.0,
+      "held_out_reward_margin": 7.686774730682373,
+      "eval_loss": 0.0016476672608405352,
+      "held_out_chosen_reward": 3.7142839431762695,
+      "held_out_rejected_reward": -3.9724905490875244,
+      "epoch_diagnostics": [
+        {
+          "step": 25,
+          "epoch": 1.0,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 5.133676528930664,
+          "eval_loss": 0.00711003877222538,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 5.8823347091674805,
+          "eval_rewards/chosen": 3.272125244140625,
+          "eval_rewards/rejected": -2.6102094650268555
+        },
+        {
+          "step": 50,
+          "epoch": 2.0,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 9.534692764282227,
+          "eval_loss": 0.0017298548482358456,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 7.630799770355225,
+          "eval_rewards/chosen": 3.7012946605682373,
+          "eval_rewards/rejected": -3.9295058250427246
+        },
+        {
+          "step": 72,
+          "epoch": 2.888888888888889,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 7.99915885925293,
+          "eval_loss": 0.0016476672608405352,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 7.686774730682373,
+          "eval_rewards/chosen": 3.7142839431762695,
+          "eval_rewards/rejected": -3.9724905490875244
+        }
+      ],
+      "outputs_changed_vs_base": 19,
+      "n": 20,
+      "mean_words": 118.45,
+      "degeneration_pct": 30.0,
+      "identical_to_base_pct": 5.0,
+      "style_marker_rate_pct": 70.0,
+      "style": {
+        "W": 9,
+        "L": 10,
+        "T": 1,
+        "tie_adjusted": 0.475,
+        "bootstrap_95pct_ci": [
+          0.25,
+          0.7
+        ],
+        "unknown": 0,
+        "failures": 0
+      },
+      "quality": {
+        "W": 5,
+        "L": 14,
+        "T": 1,
+        "tie_adjusted": 0.275,
+        "bootstrap_95pct_ci": [
+          0.1,
+          0.475
+        ],
+        "unknown": 0,
+        "failures": 0
+      },
+      "held_out_degeneration_rate": 0.8181818181818182,
+      "held_out_changed_vs_base_rate": 1.0,
+      "held_out_style_marker_rate": 0.13636363636363635,
+      "held_out_mean_words": 164.13636363636363,
+      "held_out_eligible": false
+    },
+    {
+      "run": "v3d",
+      "selected": false,
+      "trainable_parameters": 8683520,
+      "updates": 48,
+      "epochs_recorded": 1.9292929292929293,
+      "learning_rate": 0.0001,
+      "beta": 0.1,
+      "rpo_alpha": 1.0,
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ],
+      "held_out_reward_accuracy": 1.0,
+      "held_out_reward_margin": 2.3421802520751953,
+      "eval_loss": 3.30107045173645,
+      "held_out_chosen_reward": 2.595491409301758,
+      "held_out_rejected_reward": 0.25331130623817444,
+      "epoch_diagnostics": [
+        {
+          "step": 25,
+          "epoch": 1.0,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 1.7757638692855835,
+          "eval_loss": 3.478842258453369,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 1.9550011157989502,
+          "eval_rewards/chosen": 1.9665305614471436,
+          "eval_rewards/rejected": 0.011529437266290188
+        },
+        {
+          "step": 48,
+          "epoch": 1.9292929292929293,
+          "train_reward_accuracy": 1.0,
+          "train_reward_margin": 2.7213470935821533,
+          "eval_loss": 3.30107045173645,
+          "eval_rewards/accuracies": 1.0,
+          "eval_rewards/margins": 2.3421802520751953,
+          "eval_rewards/chosen": 2.595491409301758,
+          "eval_rewards/rejected": 0.25331130623817444
+        }
+      ],
+      "outputs_changed_vs_base": 20,
+      "n": 20,
+      "mean_words": 88.55,
+      "degeneration_pct": 30.0,
+      "identical_to_base_pct": 0.0,
+      "style_marker_rate_pct": 45.0,
+      "style": {
+        "W": 5,
+        "L": 14,
+        "T": 1,
+        "tie_adjusted": 0.275,
+        "bootstrap_95pct_ci": [
+          0.1,
+          0.475
+        ],
+        "unknown": 0,
+        "failures": 0
+      },
+      "quality": {
+        "W": 4,
+        "L": 14,
+        "T": 2,
+        "tie_adjusted": 0.25,
+        "bootstrap_95pct_ci": [
+          0.1,
+          0.45
+        ],
+        "unknown": 0,
+        "failures": 0
+      },
+      "held_out_degeneration_rate": 0.5,
+      "held_out_changed_vs_base_rate": 1.0,
+      "held_out_style_marker_rate": 0.4090909090909091,
+      "held_out_mean_words": 103.86363636363636,
+      "held_out_eligible": false
+    }
+  ]
+}

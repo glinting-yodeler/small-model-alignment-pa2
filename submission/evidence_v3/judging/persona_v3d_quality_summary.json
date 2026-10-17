@@ -1,0 +1,19 @@
+{
+  "persona_v3d_quality": {
+    "N": 20,
+    "W": 4,
+    "L": 14,
+    "T": 2,
+    "U": 0,
+    "F": 0,
+    "retries": 0,
+    "decisive_win_rate": 0.2222222222222222,
+    "tie_adjusted_score": 0.25,
+    "raw_win_rate": 0.2,
+    "valid_coverage": 1.0,
+    "unknown_rate": 0.0,
+    "failure_rate": 0.0,
+    "request_attempts": 4,
+    "pair_retries_including_failures": 0
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "sft_train.json": "9f3e55513aeb382fccdbf700f000108734f7dcbe70f13956535a79ce28e3c20b",
+  "sft_validation.json": "225644541323e5ac023a339e6535968d3c020af8e10960e71ff331393733e877",
+  "sft_manifest.json": "ffc4f26f007b22d0518b734d9fc6882a24a785166ebecda3530938cd51be34d5",
+  "hh_train.json": "f8e7bccbb8bed7d990482e6a4745b97bdb897ae5546069c492958910c0610414",
+  "hh_validation.json": "409574b06869bd31f59f43fd9194248e884f38e05e2ac850d0c264bd82d91ea5",
+  "hh_manifest.json": "9f711f3d5f674e6850c501c104d3f6f78441d7c16f8086888d1e2d99a55aa31a",
+  "ultrafeedback_train.json": "3f893f401e23f9f75f805b879c25d66604b1f98a88f2a394cb240cfbc34dd07a",
+  "ultrafeedback_validation.json": "cf2765a8e66aa63d14f512d3f56303de28443f92cdd004944ff218f4565acf30",
+  "ultrafeedback_manifest.json": "99b60fe93d14e322db450d8cb95b5a2e307e9f1f5a077e24c48dc37c0e611858",
+  "alpaca_eval_300_seed42.json": "6cd4cb0bc1c9c5afa579f2cce7b7cebd71b480e08f3c407f9c0164ca17b8b394",
+  "manifest.json": "9689c74adc426ce4761b4b05bd2a7a5e881d58fcb03050b98d9f5ac314313016"
+}

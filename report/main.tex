@@ -1,0 +1,96 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=0.82in]{geometry}
+\usepackage{booktabs,tabularx,graphicx,subcaption,microtype,xcolor,float,placeins,array,xspace}
+\usepackage[colorlinks=true,allcolors=blue!55!black]{hyperref}
+\setlength{\parindent}{0pt}\setlength{\parskip}{1.5pt}
+\hbadness=10000
+\setlength{\textfloatsep}{7pt}\setlength{\floatsep}{6pt}
+\input{generated_numbers.tex}
+\title{PA2: Instruction Tuning and Direct Preference Optimization}
+\author{Analytical report from preserved run artifacts}
+\date{}
+\begin{document}
+\maketitle\vspace{-1.5em}
+\begin{abstract}\small
+Custom SFT and DPO training aligned Qwen2.5-0.5B on UltraChat, HH-RLHF, and UltraFeedback; a separate TRL/PEFT experiment adapted SmolLM2-360M-Instruct. HH DPO scored \HHScore\% on required rows: \HHRowsVerdict. Across \HHUniqueN{} unique prompts it scored \HHUniqueScore\%: \HHUniqueVerdict. UltraFeedback scored \UFScore\%: \UFVerdict. The revised persona rule selected \PersonaSelected; style scored \PersonaStyleScore\%: \PersonaStyleVerdict; quality scored \PersonaQualityScore\%: \PersonaQualityVerdict. Sets are never pooled.
+\end{abstract}
+\input{generated_headline.tex}
+
+\section{Repository, models, and data}
+GitHub repository: \url{https://github.com/glinting-yodeler/small-model-alignment-pa2}
+
+SFT used a pinned Qwen2.5-0.5B base and the two full-parameter DPO policies used the exact selected SFT checkpoint as both initialization and frozen reference. Persona used the manual-required SmolLM2-360M-Instruct base with LoRA. Prepared manifests preserve source revisions, deterministic seed-based splits, overlap removal, filtering counts, and hashes. Training/validation sizes were read directly from those manifests by the report generator.
+
+UltraChat preparation retains the first user--assistant exchange. HH-RLHF parsing requires matching single human prompts on chosen/rejected sides. UltraFeedback uses the final assistant messages and removes identical preferences. AlpacaEval is a fixed seed-based subset; HH uses the supplied fixed safety/helpfulness set; persona uses the supplied preference file and a separate fixed style/coding/safety set. All splits use seed 42 and exclude blank prompts/responses and evaluation overlap. Qwen tracks use the exact template below; every persona v1, v2, and v3 training and generation run uses SmolLM2's pinned chat template.
+\begin{center}\small\ttfamily \#\#\# Instruction:\quad[instruction]\\[2pt]\#\#\# Response:\end{center}
+
+The main loops mask prompt tokens, append EOS before truncation, right-pad batches, apply causal shifting, sum response log-probabilities, freeze references under \texttt{no\_grad}, and retain policy gradients. An empty tokenized formatted prompt is counted and warns because its first response token has no causal context. All saved SFT/DPO manifests report zero empty source prompts after nonempty filtering; formatted templates themselves are nonempty.
+SFT uses a token-mean reduction over all unmasked response tokens in the accumulated window; DPO uses the batch mean of stable \texttt{logsigmoid} losses from summed response log-probabilities.
+
+\section{Experimental configuration}
+SFT used AdamW with cosine scheduling and response-token loss. Both main DPO tracks used AdamW, a constant learning rate, a frozen SFT reference, and independent full-parameter policies. Persona v1 used $r=8$, $\alpha=16$, and q/v targets. Every v2/v3 adapter used $r=16$, $\alpha=32$, dropout 0.05, q/k/v/o and gate/up/down targets, batch 1 with eight-step accumulation, FP32, cosine warmup, and seed 42; Table~\ref{tab:persona-all} gives each learning rate, epoch count, beta, and RPO coefficient. Generation was greedy (sampling disabled, so temperature and top-p are not applied) with maximum-new-token and repetition settings shown below; there was no length penalty or n-gram blocking. Each comparison used identical settings on both sides. Exact resolved configs, seeds, precision, accumulation, length limits, checkpoint hashes, and package versions are included under \texttt{submission/evidence}, \texttt{submission/evidence\_v2}, and \texttt{submission/evidence\_v3}.
+\input{generated_configuration.tex}
+
+\section{Parameter choices and deviations}
+The SFT and main DPO recipes matched the guide. Persona FP16 was replaced after a preserved pilot logged nonfinite gradients; FP32 produced finite adapters and reload checks. The v1 evidence showed few changed outputs and a small held-out margin, motivating broader v2 targets, more updates, and two learning rates. The historical rule declared before v2 judging selected highest held-out accuracy, then larger margin, then lower evaluation loss. After the judgments exposed degeneration, a revised rule was declared before any v3 generation or judgment. It uses only 22 held-out validation prompts, requires degeneration within five percentage points of base and at least 30\% changed outputs, then selects style-marker rate with accuracy and loss tie-breakers. The final evaluation prompts and judge outcomes remain excluded from both selection rules. DPO optimizer choice, validation cadence, and the final partial SFT accumulation window were not ablated, so no causal performance claim is made for them.
+
+The matched HH beta pilots weakly support retaining the control beta: it has the best final-update validation accuracy, but only narrowly. A later generation check compared each alternative with $\beta=.10$ on the same 300 prompts. Neither result was conclusive: $\beta=.05$ scored 51.8\% [48.3,55.5] and $\beta=.30$ scored 51.0\% [47.2,55.0]. The submitted HH checkpoint was not replaced.
+\input{generated_diagnostics.tex}
+
+
+\section{Training behavior}
+\begin{figure*}[!htbp]\centering
+\begin{subfigure}{\textwidth}\includegraphics[width=\linewidth]{figures/sft.pdf}\caption{SFT loss.}\end{subfigure}
+\begin{subfigure}{\textwidth}\includegraphics[width=\linewidth]{figures/hh.pdf}\caption{HH DPO loss, implicit rewards, and validation pair accuracy.}\end{subfigure}
+\begin{subfigure}{\textwidth}\includegraphics[width=\linewidth]{figures/uf.pdf}\caption{UltraFeedback DPO loss, implicit rewards, and validation pair accuracy.}\end{subfigure}
+\caption{Main-track training diagnostics from saved journals. Training loss is a 25-update moving mean; validation points and rewards are unsmoothed. Rewards are policy/reference log-ratios and pair accuracy is a fraction. Dashed lines mark selected checkpoints.}\label{fig:training}
+\vspace{2pt}
+\includegraphics[width=\textwidth]{figures/persona_variants.pdf}
+\caption{Persona held-out diagnostics at every recorded epoch for all seven variants. Loss uses a logarithmic axis so both small losses and v3d's larger value remain visible; points are unsmoothed.}\label{fig:persona-training}
+\end{figure*}
+\input{generated_training.tex}
+
+Persona v1 recorded one short epoch and only a small margin. Both v2 variants reached perfect held-out pair accuracy while margins grew sharply across epochs. The historically selected v2 variant became highly repetitive and lost every blinded comparison. The revised rule selected \PersonaSelected: on its 22 held-out prompts it changed every base output while keeping degeneration within the declared five-point allowance. Its final judgments were mixed for style and worse for quality. This divergence between pair margins and generation behavior is evidence against using held-out preference accuracy alone as deployment quality.
+\input{generated_persona.tex}
+
+\section{DPO versus SFT results}
+\input{generated_results.tex}
+\subsection{Answers}
+\textbf{Measured.} HH DPO wins the required row-weighted file (\HHW/\HHL/\HHT; \HHScore\%, CI [51.3,60.7]\%): \HHRowsVerdict. The first-row-per-normalized-prompt result is \HHUniqueW/\HHUniqueL/\HHUniqueT, \HHUniqueScore\% with prompt-level bootstrap CI [\HHUniqueCILo,\HHUniqueCIHi]\%: \HHUniqueVerdict. UltraFeedback DPO records \UFW/\UFL/\UFT{} and \UFScore\% [37.7,47.0]\%: \UFVerdict. The revised persona selection \PersonaSelected scored \PersonaStyleW/\PersonaStyleL/\PersonaStyleT, \PersonaStyleScore\% [\PersonaStyleCILo,\PersonaStyleCIHi]\% for style: \PersonaStyleVerdict; and \PersonaQualityW/\PersonaQualityL/\PersonaQualityT, \PersonaQualityScore\% [\PersonaQualityCILo,\PersonaQualityCIHi]\% for quality: \PersonaQualityVerdict.
+
+\textbf{Interpretation.} DPO is better on the row-weighted HH set by \HHNetWins\ net judgments, while the deduplicated HH result is inconclusive. SFT is better on UltraFeedback by \UFNetLosses\ net judgments. The historical rule selected v2\_lr2e4; the revised rule selected \PersonaSelected. Among all seven adapters, v3b has the highest descriptive judged style score (50.0\%) and v2\_lr2e4 the lowest (0.0\%); judge scores were never used for selection. Both v3b intervals include 50\%, and its quality point estimate favors base. No adapter demonstrated a style improvement without a quality cost at $N=20$.
+
+All tasks used the recorded \texttt{google/gemini-3.6-flash} judge inside a Kaggle benchmark runner. Pair order was randomized and identities remained hidden until decisions were mapped back. Requests contained five pairs, waited at least five seconds, and allowed three attempts. Invalid or missing IDs were retried and then recorded as failures rather than silently dropped. Final coverage was complete with no unknowns or failures; retry counts for the original tracks appear in Table~\ref{tab:blinded}.
+
+\section{Interpretation and error analysis}
+HH DPO responses are shorter and less often degenerate than SFT. Outcome correlation with DPO-minus-SFT length is \HHRho; Tables~\ref{tab:hh-length} and \ref{tab:hh-repetition} give the shorter-tercile and repetition-state counts. Table~\ref{tab:hh-category} shows concentration by prompt type: self-harm support favors DPO (19/5/6), while legal/financial safety favors SFT (7/15/8); the effect is not consistent across categories. Fewer loops are associated with HH wins, while improved safety remains a hypothesis because unsafe ties remain.
+
+UltraFeedback DPO adds 38.4 tokens on average (23.0\% over SFT), and length difference correlates negatively with outcome ($\rho=-0.365$). Losses concentrate in the longest tercile (18/69/13; Table~\ref{tab:uf-length}). This is an association, not evidence that length caused the judgments.
+
+The historically selected persona v2 adapter changed every prompt but repeated phrases heavily. In a saved coding response it repeats ``tiny'' until the generation limit; a safety response repeats an insulting accusation rather than giving actionable help. The revised \PersonaSelected adapter controls this failure on the held-out selection set. Its quality point estimate favors base but its interval includes 50\%; style is exactly tied. There is no evidence that persona style improved without a usefulness cost, and intervals are wide because $N=20$.
+
+The representative examples below supply one win, regression, and unchanged case for HH, UltraFeedback, and the revised persona selection. HH's unchanged harmful-material prompt is especially important: both models provide unsafe lists, so a tie is pipeline-consistent but not a safety success. The UltraFeedback tie repeats bear names and labels familiar living-bear names as extinct; the biological claims were not independently verified here. The persona examples are the selected adapter's deterministic first valid style win, loss, and tie; they document judged cases without selecting on outcomes.
+
+The manual requested a small sanity check before full generation. No preserved record proves that sequence for the original submitted runs. The v2 and v3 kernels ran and saved three-prompt checks before full generation; the evidence preserves the ordering and outputs rather than retroactively claiming it for the original runs.
+{\scriptsize\input{generated_examples.tex}}
+
+\section{Limitations and reproducibility}
+Bootstrap intervals use row-level resampling with a fixed seed and quantify only these saved rows. They do not measure variation across training seeds, decoding settings, or judges. The HH row interval ignores repeated-prompt dependence; the separate unique-prompt interval resamples the deduplicated prompts. All training used a single seed, all blinded comparisons used one judge model, and each persona set has only $N=20$. Greedy decoding probes one deterministic behavior.
+
+The revised persona rule was written after the v2 judgments had been observed, although its timestamp precedes every v3 generation and judgment; it is therefore not a pure preregistration. The original submitted SFT/DPO generations have no preserved pre-generation sanity check, while the v2 and v3 runs do.
+
+The real Kaggle environment check recorded \GPUCount\ \GPUName\ devices with torch \TorchVersion, Transformers \TransformersVersion, TRL \TRLVersion, and PEFT \PEFTVersion. Reproduction paths, kernel versions, raw attempts, manifests, resolved configs, adapters, and analysis JSON are listed in \texttt{docs/reproducibility.md} and \texttt{docs/artifact\_links.md}. Full Qwen weights remain in private Kaggle outputs; lightweight LoRA adapters are packaged.
+Key submitted paths are \texttt{configs/} for recipes, \texttt{submission/evidence/stages/} for metrics and resolved configurations, \texttt{submission/evidence/generations/} for decoded outputs, \texttt{submission/evidence/evaluation/} for blinded pairs and judgments, and \texttt{submission/evidence\_v2/} plus \texttt{submission/evidence\_v3/} for additive persona, pilot, environment, judgment, and analysis evidence.
+
+\begin{thebibliography}{9}\scriptsize\setlength{\itemsep}{-1pt}\setlength{\parskip}{0pt}
+\bibitem{manual} PA2 assignment manual, Tasks 1--8.
+\bibitem{dpo} Rafailov et al., ``Direct Preference Optimization,'' NeurIPS 2023.
+\bibitem{trl} Hugging Face, TRL \texttt{DPOTrainer} and PEFT LoRA documentation, accessed 2026.
+\bibitem{qwen} Qwen Team, \emph{Qwen2.5-0.5B model card}, Hugging Face.
+\bibitem{smol} Hugging Face, \emph{SmolLM2-360M-Instruct model card}.
+\bibitem{ultrachat} Ding et al., \emph{UltraChat dataset card}, Hugging Face.
+\bibitem{hh} Bai et al., ``Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback,'' 2022; Anthropic HH-RLHF dataset card.
+\bibitem{uf} Cui et al., ``UltraFeedback: Boosting Language Models with Scaled AI Feedback,'' 2023; dataset card.
+\bibitem{alpacaeval} Li et al., ``AlpacaEval: An Automatic Evaluator of Instruction-following Models,'' 2023; AlpacaEval and length-controlled AlpacaEval documentation.
+\end{thebibliography}
+\end{document}

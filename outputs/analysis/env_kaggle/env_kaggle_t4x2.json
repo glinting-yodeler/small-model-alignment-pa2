@@ -1,0 +1,16 @@
+{
+  "nvidia_smi": "Tesla T4, 580.178.04, 15360 MiB\nTesla T4, 580.178.04, 15360 MiB",
+  "cuda_device_count": 2,
+  "cuda_device_names": [
+    "Tesla T4",
+    "Tesla T4"
+  ],
+  "versions": {
+    "torch": "2.11.0+cu128",
+    "transformers": "4.51.3",
+    "datasets": "3.6.0",
+    "trl": "0.18.1",
+    "peft": "0.15.2",
+    "accelerate": "1.6.0"
+  }
+}

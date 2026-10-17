@@ -1,0 +1,32 @@
+{
+  "track": "dpo_hh",
+  "model": "/kaggle/input/notebooks/moibbi/pa2-sft-full/outputs/sft/best",
+  "output": "/kaggle/working/outputs/dpo_hh_beta01_pilot",
+  "train_data": "/kaggle/input/datasets/moibbi/pa2-frozen-prepared-inputs/hh_train.json",
+  "validation_data": "/kaggle/input/datasets/moibbi/pa2-frozen-prepared-inputs/hh_validation.json",
+  "device": "cuda:0",
+  "reference_device": "cuda:1",
+  "seed": 42,
+  "max_length": 512,
+  "max_prompt_length": 256,
+  "microbatch": 1,
+  "accumulation": 32,
+  "learning_rate": 1e-06,
+  "weight_decay": 0.0,
+  "warmup_ratio": 0.0,
+  "scheduler": "none",
+  "clip_norm": 1.0,
+  "epochs": 1,
+  "amp": true,
+  "gradient_checkpointing": true,
+  "eval_every": 50,
+  "save_every": 50,
+  "beta": 0.1,
+  "max_updates": 150,
+  "required_train_count": 15000,
+  "required_validation_count": 1000,
+  "metrics_only": true,
+  "initial_checkpoint": {
+    "model.safetensors": "5f34751f09f214d0986d8ae7bcb96b1021c08256d206214da2dfc601a00c3545"
+  }
+}

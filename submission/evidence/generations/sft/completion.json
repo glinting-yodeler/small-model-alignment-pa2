@@ -1,0 +1,24 @@
+{
+  "mode": "sft",
+  "checkpoints": {
+    "sft": "/kaggle/input/pa2-sft-full/outputs/sft/best"
+  },
+  "results": {
+    "generate_base_alpaca": {
+      "count": 300,
+      "sha256": "f1207956e5038790fcbce1b7a535dd832dc89568af1939c72e6911093fec795b",
+      "path": "/kaggle/working/outputs/generations/base_alpaca.json"
+    },
+    "generate_sft_alpaca": {
+      "count": 300,
+      "sha256": "2a6873e5e6e98203c2c94ded9862b95a71296139d0d06dd68adfa61000df38a3",
+      "path": "/kaggle/working/outputs/generations/sft_alpaca.json"
+    },
+    "generate_sft_hh": {
+      "count": 300,
+      "sha256": "3e90a367e5b71211b018733553f99eb00975ff7c3a69dc9c00dbaf16bf1d7358",
+      "path": "/kaggle/working/outputs/generations/sft_hh.json"
+    }
+  },
+  "torch": "2.11.0+cu128"
+}
